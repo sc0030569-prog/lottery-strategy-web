@@ -3,45 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-  <title>双色球每日固定策略号</title>
+  <title>彩票每日固定策略号</title>
   <style>
     :root{--bg:#090e1b;--card:#151b2e;--muted:#91a3c7;--text:#eef5ff;--red:#ff4d5e;--blue:#3f8cff;--gold:#ffd166;--green:#58d68d;--line:rgba(255,255,255,.1);--warn:#ffcf70;--purple:#b48cff}
     *{box-sizing:border-box} body{margin:0;background:linear-gradient(155deg,#070a13,#121a33 55%,#07111f);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;color:var(--text)}
-    .wrap{max-width:920px;margin:0 auto;padding:18px 14px 80px}.hero{padding:22px 18px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 12% 0%,rgba(255,77,94,.28),transparent 35%),radial-gradient(circle at 90% 10%,rgba(63,140,255,.24),transparent 38%),rgba(21,27,46,.88);box-shadow:0 18px 50px rgba(0,0,0,.36)}
+    .wrap{max-width:960px;margin:0 auto;padding:18px 14px 80px}.hero{padding:22px 18px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 12% 0%,rgba(255,77,94,.28),transparent 35%),radial-gradient(circle at 90% 10%,rgba(63,140,255,.24),transparent 38%),rgba(21,27,46,.88);box-shadow:0 18px 50px rgba(0,0,0,.36)}
     h1{font-size:27px;margin:0 0 8px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.risk{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.28);color:#ffe8aa;font-size:13px;line-height:1.6}
-    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.tab{border:1px solid var(--line);border-radius:16px;background:#10172a;color:var(--text);padding:12px 8px;font-weight:800}.tab small{display:block;color:var(--muted);font-weight:500;margin-top:4px}.tab.active{background:linear-gradient(135deg,rgba(255,77,94,.30),rgba(63,140,255,.24));border-color:rgba(255,255,255,.28)}
+    .game-tabs,.play-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0}.play-tabs{grid-template-columns:repeat(3,1fr);margin:12px 0}.tab{border:1px solid var(--line);border-radius:16px;background:#10172a;color:var(--text);padding:11px 8px;font-weight:900}.tab small{display:block;color:var(--muted);font-weight:500;margin-top:4px}.tab.active{background:linear-gradient(135deg,rgba(255,77,94,.30),rgba(63,140,255,.24));border-color:rgba(255,255,255,.28)}
     .card{border:1px solid var(--line);border-radius:22px;background:rgba(21,27,46,.90);padding:16px;margin-top:12px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.pill{border-radius:999px;padding:6px 10px;background:#0f172a;color:var(--muted);font-size:13px;border:1px solid var(--line)}.pill strong{color:var(--gold)}
-    h2{font-size:20px;margin:0 0 10px} h3{font-size:16px;margin:18px 0 8px;color:#dbe7ff}.desc{font-size:14px;color:var(--muted);line-height:1.7}.balls{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.ball{width:37px;height:37px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;box-shadow:inset 0 -4px 8px rgba(0,0,0,.22),0 6px 14px rgba(0,0,0,.25)}.red{background:linear-gradient(#ff7380,#e5283e)}.blue{background:linear-gradient(#68a6ff,#1768e8)}
+    h2{font-size:20px;margin:0 0 10px} h3{font-size:16px;margin:18px 0 8px;color:#dbe7ff}.desc{font-size:14px;color:var(--muted);line-height:1.7}.balls{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 12px}.ball{width:37px;height:37px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;box-shadow:inset 0 -4px 8px rgba(0,0,0,.22),0 6px 14px rgba(0,0,0,.25)}.red{background:linear-gradient(#ff7380,#e5283e)}.blue{background:linear-gradient(#68a6ff,#1768e8)}.gold{background:linear-gradient(#ffe08c,#d99a00);color:#111}.purple{background:linear-gradient(#c9a6ff,#7547d8)}
     .actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}.btn{border:0;border-radius:15px;padding:13px 12px;font-weight:900;color:#08111f;background:var(--gold)}
     .ticket{padding:12px;border-radius:16px;background:#0c1325;border:1px solid var(--line);margin:10px 0}.ticket-title{display:flex;justify-content:space-between;gap:10px;color:#c9d7f5;font-size:13px;margin-bottom:8px}.score{color:var(--green);font-weight:800}.steps{padding-left:20px;color:#d6e0f7;line-height:1.8;font-size:14px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:12px;border-radius:16px;background:#0d1427;border:1px solid var(--line)}.stat b{display:block;font-size:18px;color:var(--green)}.stat span{font-size:12px;color:var(--muted)}
-    .note{font-size:13px;color:#bdd0f3;line-height:1.75}.mini{font-size:12px;color:var(--muted);line-height:1.6}.tagline{display:inline-flex;align-items:center;gap:6px;color:#06101e;background:var(--green);border-radius:999px;padding:5px 9px;font-weight:900;font-size:12px;margin-bottom:10px}.warn{color:#ffe2a5}.footer{color:var(--muted);font-size:12px;line-height:1.7;text-align:center;margin-top:18px}.loading{color:var(--muted);padding:20px;text-align:center}
+    .note{font-size:13px;color:#bdd0f3;line-height:1.75}.mini{font-size:12px;color:var(--muted);line-height:1.6}.tagline{display:inline-flex;align-items:center;gap:6px;color:#06101e;background:var(--green);border-radius:999px;padding:5px 9px;font-weight:900;font-size:12px;margin-bottom:10px}.warn{color:#ffe2a5}.footer{color:var(--muted);font-size:12px;line-height:1.7;text-align:center;margin-top:18px}.loading{color:var(--muted);padding:20px;text-align:center}.rule{padding:9px 10px;border-radius:13px;background:#10182d;border:1px solid var(--line);margin:7px 0;color:#d6e0f7;font-size:14px;line-height:1.55}
     .lottery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.lottery-card{padding:13px;border-radius:17px;background:#0c1325;border:1px solid var(--line)}.lottery-card b{display:block;margin-bottom:6px}.lottery-card .type{color:var(--gold);font-size:12px}.lottery-card p{margin:7px 0 0;color:#bdd0f3;line-height:1.6;font-size:13px}.rank{display:grid;gap:9px}.rank-item{padding:12px;border-radius:16px;border:1px solid var(--line);background:#0d1427}.rank-item strong{color:var(--green)}.rank-item em{font-style:normal;color:var(--purple);font-weight:800}
-    @media(max-width:560px){.tabs{grid-template-columns:1fr}.grid,.lottery-grid{grid-template-columns:1fr}h1{font-size:24px}.ball{width:35px;height:35px}.wrap{padding-left:12px;padding-right:12px}}
+    @media(max-width:720px){.game-tabs{grid-template-columns:repeat(2,1fr)}.play-tabs{grid-template-columns:1fr}.grid,.lottery-grid{grid-template-columns:1fr}h1{font-size:24px}.ball{width:35px;height:35px}.wrap{padding-left:12px;padding-right:12px}}
   </style>
 </head>
 <body>
 <div class="wrap">
   <section class="hero">
-    <div class="tagline">今日固定，不刷新重抽</div>
-    <h1>双色球每日固定策略号</h1>
-    <div class="sub">每天只给一套主推号码：结合最近开奖的热冷、遗漏、红球分区、奇偶和值结构做评分。同一天无论打开多少次，号码都固定，不再提供“重新生成”。</div>
-    <div class="risk">重要提醒：双色球每注中奖概率由规则决定，历史统计不能真正预测下一期。这里说的“最大胜率”，指在本模型评分下的最优组合，不代表保证中奖；务必固定56元预算，不倍投。</div>
+    <div class="tagline">每日固定，不刷新重抽</div>
+    <h1>彩票每日固定策略号</h1>
+    <div class="sub">把彩票站常见玩法都做成“当天固定方案”：双色球、福彩3D、七乐彩、快乐8、大乐透、排列3/5、七星彩，以及竞彩/刮刮乐纪律清单。刷新网页、换手机打开，同一天结果都不变。</div>
+    <div class="risk">重要提醒：彩票开奖是独立随机事件，没有稳定可预测规律。本页只做预算纪律、结构覆盖和减少乱买，不代表保证中奖；核心原则是不倍投、不追仓。</div>
   </section>
 
-  <div class="tabs">
-    <button class="tab active" data-id="balanced">今日主推<small>两组7红2蓝｜56元</small></button>
-    <button class="tab" data-id="jackpot">冲大奖<small>8红1蓝｜56元</small></button>
-    <button class="tab" data-id="small">多中小奖<small>7红4蓝｜56元</small></button>
-  </div>
+  <div class="game-tabs" id="gameTabs"><div class="loading">正在读取今日全部策略...</div></div>
 
   <section class="card">
-    <h2 id="strategyName">加载中...</h2>
-    <div class="row" id="tags"></div>
-    <p class="desc" id="strategyDesc"></p>
-    <div class="grid" id="stats"></div>
-    <h3>今天就买这组</h3>
+    <h2 id="gameName">加载中...</h2>
+    <div class="row" id="gameTags"></div>
+    <p class="desc" id="gameDesc"></p>
+    <div class="risk" id="gameRisk"></div>
+    <div class="play-tabs" id="playTabs"></div>
+    <h3 id="playName">今天就买这组</h3>
+    <p class="note" id="playWhy"></p>
     <div id="tickets"><div class="loading">正在读取今日固定号码...</div></div>
-    <div class="actions"><button class="btn" onclick="copyPlan()">复制今日购买清单</button></div>
+    <div class="actions"><button class="btn" onclick="copyPlan()">复制当前彩种购买清单</button></div>
   </section>
 
   <section class="card">
@@ -51,17 +49,12 @@
   </section>
 
   <section class="card">
-    <h2>为什么不再刷新</h2>
-    <div class="note">之前随机刷新会让人纠结“到底买哪组”。现在改为：每天用固定日期 + 历史统计评分算一次，页面只展示当天结果。刷新网页、换手机打开，都还是同一组。下一天需要我更新时，再重新跑当天评分。</div>
-  </section>
-
-  <section class="card">
     <h2>怎么买更稳</h2>
     <ol class="steps">
-      <li>今天只照“今日主推”买，不来回切换。</li>
-      <li>固定预算：每期最多56元，不倍投、不追仓。</li>
-      <li>如果只想冲一等奖/二等奖，可切到“冲大奖”；如果想提高小奖反馈，切到“多中小奖”。</li>
-      <li>开奖后只复盘命中，不因为没中就加钱追。</li>
+      <li>每天只照当前彩种的“主推方案”买，不来回刷新重抽。</li>
+      <li>每种彩票单独固定预算，不因为某天没中就倍投。</li>
+      <li>双色球/大乐透偏大奖覆盖；3D/排列3偏小额反馈；快乐8、刮刮乐只做娱乐轻仓。</li>
+      <li>开奖后只复盘命中，不追仓、不临时加码。</li>
     </ol>
   </section>
 
@@ -69,77 +62,75 @@
     <h2>彩票站还能买什么</h2>
     <p class="note">一般分两大类：<b>福利彩票</b>（民政体系）和 <b>体育彩票</b>（体育体系）。不同门店资质不一样，不是每家都全卖；实际以店里终端能出票为准。</p>
     <div class="lottery-grid">
-      <div class="lottery-card"><b>双色球</b><span class="type">福彩｜红球33选6 + 蓝球16选1</span><p>我们当前主策略。奖池大、规则固定，适合做 56 元复式/胆拖预算模型。</p></div>
-      <div class="lottery-card"><b>福彩3D</b><span class="type">福彩｜000-999 三位数</span><p>每天开奖，玩法多。理论概率清楚，适合用“直选/组选/跨度/和值”做小额模型。</p></div>
-      <div class="lottery-card"><b>七乐彩</b><span class="type">福彩｜30选7</span><p>没有蓝球，红球覆盖逻辑更简单，但关注度和奖池通常低于双色球。</p></div>
-      <div class="lottery-card"><b>快乐8</b><span class="type">福彩｜80选20开奖，多种选法</span><p>玩法非常多，偏高频娱乐；可做“选十/选五”等固定预算覆盖，但要严控注数。</p></div>
-      <div class="lottery-card"><b>大乐透</b><span class="type">体彩｜前区35选5 + 后区12选2</span><p>和双色球最接近，也是大盘玩法。适合单独做一套 60 元以内复式策略。</p></div>
-      <div class="lottery-card"><b>排列3 / 排列5</b><span class="type">体彩｜数字型</span><p>排列3类似福彩3D；排列5难度更高。适合研究和值、跨度、形态过滤。</p></div>
-      <div class="lottery-card"><b>七星彩</b><span class="type">体彩｜数字型</span><p>位数更多，随机性强，适合轻仓娱乐，不建议重投入。</p></div>
-      <div class="lottery-card"><b>竞彩 / 胜负彩 / 即开票</b><span class="type">体彩/门店常见</span><p>竞彩依赖比赛判断，和随机选号不一样；即开票就是刮刮乐，适合娱乐不适合模型化追投。</p></div>
+      <div class="lottery-card"><b>双色球</b><span class="type">福彩｜红球33选6 + 蓝球16选1</span><p>当前主策略。奖池大、规则固定，适合56元复式/胆拖预算模型。</p></div>
+      <div class="lottery-card"><b>福彩3D / 排列3</b><span class="type">数字型｜000-999</span><p>每天开奖，概率结构清楚，适合小额直选/组选模型。</p></div>
+      <div class="lottery-card"><b>七乐彩 / 快乐8</b><span class="type">福彩｜多号码覆盖</span><p>可做固定覆盖，但玩法多、注数容易失控，必须限额。</p></div>
+      <div class="lottery-card"><b>大乐透 / 排列5 / 七星彩</b><span class="type">体彩｜大盘+数字型</span><p>大乐透最适合和双色球并行；排列5/七星彩只建议轻仓。</p></div>
     </div>
-  </section>
-
-  <section class="card">
-    <h2>下一步可一起做的策略优先级</h2>
-    <div class="rank">
-      <div class="rank-item"><strong>第1优先：大乐透</strong>｜<em>最值得加进网页</em><br><span class="note">和双色球结构类似，能复用“热冷 + 遗漏 + 分区 + 复式预算”的模型，适合做每天固定号。</span></div>
-      <div class="rank-item"><strong>第2优先：福彩3D / 排列3</strong>｜<em>小奖反馈更频繁</em><br><span class="note">不是为了稳赚，而是因为数字型玩法概率、赔率、过滤条件更直观，方便做小额固定策略。</span></div>
-      <div class="rank-item"><strong>第3优先：七乐彩 / 快乐8</strong>｜<em>可做但先别重仓</em><br><span class="note">可以做覆盖模型，但玩法多、注数容易失控，要先限定预算再设计。</span></div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>先定总原则</h2>
-    <ol class="steps">
-      <li>彩票没有可稳定预测的规律，只能做“预算固定 + 组合覆盖 + 减少乱买”。</li>
-      <li>每种彩票单独设上限，不能因为某天没中就倍投。</li>
-      <li>网页后续可以加“双色球 / 大乐透 / 3D”三个标签，每天各给固定方案。</li>
-      <li>策略目标不是保证中奖，而是：同样预算下，选号更有纪律、覆盖更清楚、少买重复低效组合。</li>
-    </ol>
   </section>
 
   <div class="footer">本工具只做组合覆盖、统计评分和预算提醒；彩票是随机游戏，请理性娱乐。</div>
 </div>
 <script>
-const strategies={
-  balanced:{name:'今日主推：两组 7红2蓝',cost:'56元',bets:'28注',level:'模型首选',desc:'主推方案。56元拆成两组7红2蓝，红球尽量错开，蓝球覆盖4个；兼顾冲高奖和分散覆盖，适合长期固定执行。',stats:[['总注数','28注'],['金额','56元'],['定位','均衡最高分'],['适合','今天照买']]},
-  jackpot:{name:'冲大奖：8红1蓝复式',cost:'56元',bets:'28注',level:'冲高奖',desc:'8个红球自动组合成28注，红球覆盖更强。如果6个开奖号全在你的8红里，蓝球中就是一等奖，蓝球不中也有二等奖。',stats:[['总注数','28注'],['金额','56元'],['一等奖概率','约1/632896'],['适合','冲大奖']]},
-  small:{name:'多中小奖：7红4蓝复式',cost:'56元',bets:'28注',level:'小奖体验',desc:'红球7个、蓝球4个。蓝球覆盖更宽，更容易带出六等奖、五等奖，适合想提高中奖反馈的人。',stats:[['总注数','28注'],['金额','56元'],['蓝球覆盖','4/16'],['适合','多中小奖']]}
-};
-let current='balanced', plan=null;
+let data=null, gameIndex=0, playIndex=0;
 function pad(n){return String(n).padStart(2,'0')}
-function balls(nums,type){return `<div class="balls">${nums.map(n=>`<span class="ball ${type}">${pad(n)}</span>`).join('')}</div>`}
+function balls(nums,type){return `<div class="balls">${(nums||[]).map(n=>`<span class="ball ${type}">${pad(n)}</span>`).join('')}</div>`}
+function digits(nums){return `<div class="balls">${(nums||[]).map(n=>`<span class="ball gold">${n}</span>`).join('')}</div>`}
+function renderTabs(){
+  const box=document.getElementById('gameTabs');
+  box.innerHTML=data.games.map((g,i)=>`<button class="tab ${i===gameIndex?'active':''}" onclick="gameIndex=${i};playIndex=0;render()">${g.name}<small>${g.group}｜${g.budget}</small></button>`).join('');
+}
 function render(){
-  if(!plan) return;
-  const s=strategies[current];
-  document.getElementById('strategyName').textContent=s.name;
-  document.getElementById('tags').innerHTML=`<span class="pill">日期 <strong>${plan.date}</strong></span><span class="pill">金额 <strong>${s.cost}</strong></span><span class="pill">覆盖 <strong>${s.bets}</strong></span><span class="pill">定位 <strong>${s.level}</strong></span>`;
-  document.getElementById('strategyDesc').textContent=s.desc;
-  document.getElementById('stats').innerHTML=s.stats.map(x=>`<div class="stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join('');
-  renderTickets();
+  if(!data) return;
+  renderTabs();
+  const g=data.games[gameIndex];
+  const play=g.plays[playIndex]||g.plays[0];
+  document.getElementById('gameName').textContent=g.name+' 每日固定策略';
+  document.getElementById('gameTags').innerHTML=`<span class="pill">日期 <strong>${data.date}</strong></span><span class="pill">类别 <strong>${g.group}</strong></span><span class="pill">预算 <strong>${g.budget}</strong></span><span class="pill">开奖 <strong>${g.frequency||'-'}</strong></span>`;
+  document.getElementById('gameDesc').textContent=g.desc||'';
+  document.getElementById('gameRisk').textContent=g.risk||data.notice;
+  document.getElementById('playTabs').innerHTML=g.plays.map((p,i)=>`<button class="tab ${i===playIndex?'active':''}" onclick="playIndex=${i};render()">${p.name}<small>${p.cost}｜${p.bets}</small></button>`).join('');
+  document.getElementById('playName').textContent=play.name;
+  document.getElementById('playWhy').textContent=play.why||'';
+  renderTickets(play.tickets||[]);
+  renderHistory(g);
 }
-function renderTickets(){
-  const groups=plan.strategies[current]||[];
-  document.getElementById('tickets').innerHTML=groups.map((p,i)=>`<div class="ticket"><div class="ticket-title"><b>第${i+1}组</b><span>${p.red.length}红${p.blue.length}蓝｜<span class="score">评分 ${p.score}</span></span></div><div>红球</div>${balls(p.red,'red')}<div>蓝球</div>${balls(p.blue,'blue')}</div>`).join('');
+function renderTickets(tickets){
+  document.getElementById('tickets').innerHTML=tickets.map((t,i)=>{
+    let html=`<div class="ticket"><div class="ticket-title"><b>第${i+1}组</b><span><span class="score">评分 ${t.score??'-'}</span></span></div>`;
+    if(t.red){ html+=`<div>红球</div>${balls(t.red,'red')}<div>蓝球</div>${balls(t.blue,'blue')}`; }
+    else if(t.front){ html+=`<div>前区</div>${balls(t.front,'red')}<div>后区</div>${balls(t.back,'blue')}`; }
+    else if(t.nums){ html+=`<div>号码</div>${balls(t.nums,'purple')}`; }
+    else if(t.digits){ html+=`<div>数字</div>${digits(t.digits)}<div class="mini">和值 ${t.sum}｜跨度 ${t.span}</div>`; }
+    else if(t.rules){ html+=t.rules.map((r,idx)=>`<div class="rule">${idx+1}. ${r}</div>`).join(''); }
+    return html+'</div>';
+  }).join('') || '<div class="risk">暂无方案</div>';
 }
-function listPairs(arr){return arr.map(x=>`${pad(x[0])}（${x[1]}次）`).join('、')}
-function renderHistory(){
+function listPairs(arr){return (arr||[]).map(x=>`${pad(x[0])}（${x[1]}次）`).join('、')}
+function renderHistory(g){
   document.getElementById('historyStats').innerHTML=[
-    ['最近开奖',`${plan.latest_issue}期`],['开奖日期',plan.latest_date||'-'],['样本数量',`${plan.history_count}期`],['每日固定',plan.fixed_for_day?'是':'否']
+    ['彩种',g.name],['今日固定',data.fixed_for_day?'是':'否'],['预算',g.budget],['最近开奖',g.latest_issue?g.latest_issue+'期':'按日签名']
   ].map(x=>`<div class="stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join('');
-  const st=plan.stats||{};
-  document.getElementById('methodText').innerHTML=`${plan.method}<br><br><b>近样本红球热号：</b>${listPairs(st.red_hot||[])}<br><b>近样本红球冷号：</b>${listPairs(st.red_cold||[])}<br><b>近样本蓝球热号：</b>${listPairs(st.blue_hot||[])}<br><b>近样本蓝球冷号：</b>${listPairs(st.blue_cold||[])}<br><br><span class="warn">说明：热冷/遗漏只用于组合评分，不能当成下一期必出。</span>`;
+  const st=g.stats||{};
+  let extra='';
+  if(st.red_hot){extra=`<br><br><b>近样本红球热号：</b>${listPairs(st.red_hot)}<br><b>近样本红球冷号：</b>${listPairs(st.red_cold)}<br><b>近样本蓝球热号：</b>${listPairs(st.blue_hot)}<br><b>近样本蓝球冷号：</b>${listPairs(st.blue_cold)}`}
+  document.getElementById('methodText').innerHTML=`${g.method||data.notice}${extra}<br><br><span class="warn">说明：热冷/遗漏/日签名只用于固定方案和结构评分，不能当成下一期必出。</span>`;
+}
+function ticketText(t){
+  if(t.red) return `红球 ${t.red.map(pad).join(' ')} + 蓝球 ${t.blue.map(pad).join(' ')}`;
+  if(t.front) return `前区 ${t.front.map(pad).join(' ')} + 后区 ${t.back.map(pad).join(' ')}`;
+  if(t.nums) return `号码 ${t.nums.map(pad).join(' ')}`;
+  if(t.digits) return `数字 ${t.digits.join('')}（和值${t.sum}，跨度${t.span}）`;
+  if(t.rules) return t.rules.map((r,i)=>`${i+1}. ${r}`).join('；');
+  return '';
 }
 function copyPlan(){
-  if(!plan) return;
-  const s=strategies[current];
-  const groups=plan.strategies[current]||[];
-  const txt=[`双色球今日固定策略：${plan.date} ${s.name}`,`金额：${s.cost}，${s.bets}`,...groups.map((p,i)=>`第${i+1}组：红球 ${p.red.map(pad).join(' ')} + 蓝球 ${p.blue.map(pad).join(' ')}`),'提醒：同一天不刷新重抽；理性娱乐，不倍投。'].join('\n');
-  navigator.clipboard?.writeText(txt); alert('今日购买清单已复制');
+  if(!data) return;
+  const g=data.games[gameIndex]; const p=g.plays[playIndex]||g.plays[0];
+  const txt=[`${g.name}今日固定策略：${data.date}`,`方案：${p.name}`,`金额：${p.cost}，${p.bets}`,...(p.tickets||[]).map((t,i)=>`第${i+1}组：${ticketText(t)}`),'提醒：同一天不刷新重抽；理性娱乐，不倍投。'].join('\n');
+  navigator.clipboard?.writeText(txt); alert('当前购买清单已复制');
 }
-document.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');current=btn.dataset.id;render();});
-fetch('data/daily_plan.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{plan=j;render();renderHistory();}).catch(e=>{document.getElementById('tickets').innerHTML='<div class="risk">读取今日号码失败，请稍后刷新页面。</div>';console.error(e);});
+fetch('data/all_daily_plans.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{data=j;render();}).catch(e=>{document.getElementById('tickets').innerHTML='<div class="risk">读取今日号码失败，请稍后刷新页面。</div>';console.error(e);});
 </script>
 </body>
 </html>
