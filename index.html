@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
   <title>双色球每日固定策略号</title>
   <style>
-    :root{--bg:#090e1b;--card:#151b2e;--muted:#91a3c7;--text:#eef5ff;--red:#ff4d5e;--blue:#3f8cff;--gold:#ffd166;--green:#58d68d;--line:rgba(255,255,255,.1);--warn:#ffcf70}
+    :root{--bg:#090e1b;--card:#151b2e;--muted:#91a3c7;--text:#eef5ff;--red:#ff4d5e;--blue:#3f8cff;--gold:#ffd166;--green:#58d68d;--line:rgba(255,255,255,.1);--warn:#ffcf70;--purple:#b48cff}
     *{box-sizing:border-box} body{margin:0;background:linear-gradient(155deg,#070a13,#121a33 55%,#07111f);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;color:var(--text)}
     .wrap{max-width:920px;margin:0 auto;padding:18px 14px 80px}.hero{padding:22px 18px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 12% 0%,rgba(255,77,94,.28),transparent 35%),radial-gradient(circle at 90% 10%,rgba(63,140,255,.24),transparent 38%),rgba(21,27,46,.88);box-shadow:0 18px 50px rgba(0,0,0,.36)}
     h1{font-size:27px;margin:0 0 8px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.risk{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.28);color:#ffe8aa;font-size:13px;line-height:1.6}
@@ -15,7 +15,8 @@
     .actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}.btn{border:0;border-radius:15px;padding:13px 12px;font-weight:900;color:#08111f;background:var(--gold)}
     .ticket{padding:12px;border-radius:16px;background:#0c1325;border:1px solid var(--line);margin:10px 0}.ticket-title{display:flex;justify-content:space-between;gap:10px;color:#c9d7f5;font-size:13px;margin-bottom:8px}.score{color:var(--green);font-weight:800}.steps{padding-left:20px;color:#d6e0f7;line-height:1.8;font-size:14px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:12px;border-radius:16px;background:#0d1427;border:1px solid var(--line)}.stat b{display:block;font-size:18px;color:var(--green)}.stat span{font-size:12px;color:var(--muted)}
     .note{font-size:13px;color:#bdd0f3;line-height:1.75}.mini{font-size:12px;color:var(--muted);line-height:1.6}.tagline{display:inline-flex;align-items:center;gap:6px;color:#06101e;background:var(--green);border-radius:999px;padding:5px 9px;font-weight:900;font-size:12px;margin-bottom:10px}.warn{color:#ffe2a5}.footer{color:var(--muted);font-size:12px;line-height:1.7;text-align:center;margin-top:18px}.loading{color:var(--muted);padding:20px;text-align:center}
-    @media(max-width:560px){.tabs{grid-template-columns:1fr}.grid{grid-template-columns:1fr}h1{font-size:24px}.ball{width:35px;height:35px}.wrap{padding-left:12px;padding-right:12px}}
+    .lottery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.lottery-card{padding:13px;border-radius:17px;background:#0c1325;border:1px solid var(--line)}.lottery-card b{display:block;margin-bottom:6px}.lottery-card .type{color:var(--gold);font-size:12px}.lottery-card p{margin:7px 0 0;color:#bdd0f3;line-height:1.6;font-size:13px}.rank{display:grid;gap:9px}.rank-item{padding:12px;border-radius:16px;border:1px solid var(--line);background:#0d1427}.rank-item strong{color:var(--green)}.rank-item em{font-style:normal;color:var(--purple);font-weight:800}
+    @media(max-width:560px){.tabs{grid-template-columns:1fr}.grid,.lottery-grid{grid-template-columns:1fr}h1{font-size:24px}.ball{width:35px;height:35px}.wrap{padding-left:12px;padding-right:12px}}
   </style>
 </head>
 <body>
@@ -61,6 +62,40 @@
       <li>固定预算：每期最多56元，不倍投、不追仓。</li>
       <li>如果只想冲一等奖/二等奖，可切到“冲大奖”；如果想提高小奖反馈，切到“多中小奖”。</li>
       <li>开奖后只复盘命中，不因为没中就加钱追。</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>彩票站还能买什么</h2>
+    <p class="note">一般分两大类：<b>福利彩票</b>（民政体系）和 <b>体育彩票</b>（体育体系）。不同门店资质不一样，不是每家都全卖；实际以店里终端能出票为准。</p>
+    <div class="lottery-grid">
+      <div class="lottery-card"><b>双色球</b><span class="type">福彩｜红球33选6 + 蓝球16选1</span><p>我们当前主策略。奖池大、规则固定，适合做 56 元复式/胆拖预算模型。</p></div>
+      <div class="lottery-card"><b>福彩3D</b><span class="type">福彩｜000-999 三位数</span><p>每天开奖，玩法多。理论概率清楚，适合用“直选/组选/跨度/和值”做小额模型。</p></div>
+      <div class="lottery-card"><b>七乐彩</b><span class="type">福彩｜30选7</span><p>没有蓝球，红球覆盖逻辑更简单，但关注度和奖池通常低于双色球。</p></div>
+      <div class="lottery-card"><b>快乐8</b><span class="type">福彩｜80选20开奖，多种选法</span><p>玩法非常多，偏高频娱乐；可做“选十/选五”等固定预算覆盖，但要严控注数。</p></div>
+      <div class="lottery-card"><b>大乐透</b><span class="type">体彩｜前区35选5 + 后区12选2</span><p>和双色球最接近，也是大盘玩法。适合单独做一套 60 元以内复式策略。</p></div>
+      <div class="lottery-card"><b>排列3 / 排列5</b><span class="type">体彩｜数字型</span><p>排列3类似福彩3D；排列5难度更高。适合研究和值、跨度、形态过滤。</p></div>
+      <div class="lottery-card"><b>七星彩</b><span class="type">体彩｜数字型</span><p>位数更多，随机性强，适合轻仓娱乐，不建议重投入。</p></div>
+      <div class="lottery-card"><b>竞彩 / 胜负彩 / 即开票</b><span class="type">体彩/门店常见</span><p>竞彩依赖比赛判断，和随机选号不一样；即开票就是刮刮乐，适合娱乐不适合模型化追投。</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>下一步可一起做的策略优先级</h2>
+    <div class="rank">
+      <div class="rank-item"><strong>第1优先：大乐透</strong>｜<em>最值得加进网页</em><br><span class="note">和双色球结构类似，能复用“热冷 + 遗漏 + 分区 + 复式预算”的模型，适合做每天固定号。</span></div>
+      <div class="rank-item"><strong>第2优先：福彩3D / 排列3</strong>｜<em>小奖反馈更频繁</em><br><span class="note">不是为了稳赚，而是因为数字型玩法概率、赔率、过滤条件更直观，方便做小额固定策略。</span></div>
+      <div class="rank-item"><strong>第3优先：七乐彩 / 快乐8</strong>｜<em>可做但先别重仓</em><br><span class="note">可以做覆盖模型，但玩法多、注数容易失控，要先限定预算再设计。</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>先定总原则</h2>
+    <ol class="steps">
+      <li>彩票没有可稳定预测的规律，只能做“预算固定 + 组合覆盖 + 减少乱买”。</li>
+      <li>每种彩票单独设上限，不能因为某天没中就倍投。</li>
+      <li>网页后续可以加“双色球 / 大乐透 / 3D”三个标签，每天各给固定方案。</li>
+      <li>策略目标不是保证中奖，而是：同样预算下，选号更有纪律、覆盖更清楚、少买重复低效组合。</li>
     </ol>
   </section>
 
