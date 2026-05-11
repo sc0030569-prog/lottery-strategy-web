@@ -3,166 +3,148 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-  <title>彩票每日固定策略号</title>
+  <title>今日彩票号码</title>
   <style>
-    :root{--bg:#090e1b;--card:#151b2e;--muted:#91a3c7;--text:#eef5ff;--red:#ff4d5e;--blue:#3f8cff;--gold:#ffd166;--green:#58d68d;--line:rgba(255,255,255,.1);--warn:#ffcf70;--purple:#b48cff}
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(155deg,#070a13,#121a33 55%,#07111f);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;color:var(--text)}
-    .wrap{max-width:960px;margin:0 auto;padding:18px 14px 80px}.hero{padding:22px 18px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 12% 0%,rgba(255,77,94,.28),transparent 35%),radial-gradient(circle at 90% 10%,rgba(63,140,255,.24),transparent 38%),rgba(21,27,46,.88);box-shadow:0 18px 50px rgba(0,0,0,.36)}
-    h1{font-size:27px;margin:0 0 8px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.risk{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.28);color:#ffe8aa;font-size:13px;line-height:1.6}
-    .game-tabs,.play-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0}.play-tabs{grid-template-columns:repeat(3,1fr);margin:12px 0}.tab{border:1px solid var(--line);border-radius:16px;background:#10172a;color:var(--text);padding:11px 8px;font-weight:900}.tab small{display:block;color:var(--muted);font-weight:500;margin-top:4px}.tab.active{background:linear-gradient(135deg,rgba(255,77,94,.30),rgba(63,140,255,.24));border-color:rgba(255,255,255,.28)}
-    .card{border:1px solid var(--line);border-radius:22px;background:rgba(21,27,46,.90);padding:16px;margin-top:12px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.pill{border-radius:999px;padding:6px 10px;background:#0f172a;color:var(--muted);font-size:13px;border:1px solid var(--line)}.pill strong{color:var(--gold)}
-    h2{font-size:20px;margin:0 0 10px} h3{font-size:16px;margin:18px 0 8px;color:#dbe7ff}.desc{font-size:14px;color:var(--muted);line-height:1.7}.balls{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 12px}.ball{width:37px;height:37px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;box-shadow:inset 0 -4px 8px rgba(0,0,0,.22),0 6px 14px rgba(0,0,0,.25)}.red{background:linear-gradient(#ff7380,#e5283e)}.blue{background:linear-gradient(#68a6ff,#1768e8)}.gold{background:linear-gradient(#ffe08c,#d99a00);color:#111}.purple{background:linear-gradient(#c9a6ff,#7547d8)}
-    .actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}.btn{border:0;border-radius:15px;padding:13px 12px;font-weight:900;color:#08111f;background:var(--gold)}
-    .ticket{padding:12px;border-radius:16px;background:#0c1325;border:1px solid var(--line);margin:10px 0}.ticket-title{display:flex;justify-content:space-between;gap:10px;color:#c9d7f5;font-size:13px;margin-bottom:8px}.score{color:var(--green);font-weight:800}.steps{padding-left:20px;color:#d6e0f7;line-height:1.8;font-size:14px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:12px;border-radius:16px;background:#0d1427;border:1px solid var(--line)}.stat b{display:block;font-size:18px;color:var(--green)}.stat span{font-size:12px;color:var(--muted)}
-    .note{font-size:13px;color:#bdd0f3;line-height:1.75}.mini{font-size:12px;color:var(--muted);line-height:1.6}.tagline{display:inline-flex;align-items:center;gap:6px;color:#06101e;background:var(--green);border-radius:999px;padding:5px 9px;font-weight:900;font-size:12px;margin-bottom:10px}.warn{color:#ffe2a5}.footer{color:var(--muted);font-size:12px;line-height:1.7;text-align:center;margin-top:18px}.loading{color:var(--muted);padding:20px;text-align:center}.rule{padding:9px 10px;border-radius:13px;background:#10182d;border:1px solid var(--line);margin:7px 0;color:#d6e0f7;font-size:14px;line-height:1.55}
-    .lottery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.lottery-card{padding:13px;border-radius:17px;background:#0c1325;border:1px solid var(--line)}.lottery-card b{display:block;margin-bottom:6px}.lottery-card .type{color:var(--gold);font-size:12px}.lottery-card p{margin:7px 0 0;color:#bdd0f3;line-height:1.6;font-size:13px}.rank{display:grid;gap:9px}.rank-item{padding:12px;border-radius:16px;border:1px solid var(--line);background:#0d1427}.rank-item strong{color:var(--green)}.rank-item em{font-style:normal;color:var(--purple);font-weight:800}
-    .buy-list{display:grid;gap:10px}.buy-card{padding:13px;border-radius:17px;background:#0c1325;border:1px solid var(--line)}.buy-card h3{margin:0 0 8px;color:#fff}.buy-line{font-size:14px;color:#dbe7ff;line-height:1.8;padding:5px 0;border-top:1px dashed rgba(255,255,255,.08)}.buy-line:first-of-type{border-top:0}.buy-line b{color:var(--gold)}.copy-all{margin-top:12px}
-    @media(max-width:720px){.game-tabs{grid-template-columns:repeat(2,1fr)}.play-tabs{grid-template-columns:1fr}.grid,.lottery-grid{grid-template-columns:1fr}h1{font-size:24px}.ball{width:35px;height:35px}.wrap{padding-left:12px;padding-right:12px}}
+    :root{--bg:#07101f;--card:#111a2e;--card2:#0b1324;--text:#f3f7ff;--muted:#91a3c7;--line:rgba(255,255,255,.10);--red:#f04455;--blue:#2279ff;--gold:#ffd166;--green:#52d273;--purple:#9b78ff}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(160deg,#060914 0%,#101b35 52%,#07111f 100%);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;color:var(--text)}
+    .app{max-width:760px;margin:0 auto;min-height:100vh;padding:14px 12px 88px}.top{position:sticky;top:0;z-index:9;margin:-14px -12px 12px;padding:14px 12px 10px;background:linear-gradient(180deg,rgba(7,16,31,.98),rgba(7,16,31,.88) 78%,rgba(7,16,31,0));backdrop-filter:blur(14px)}
+    .hero{border:1px solid var(--line);border-radius:22px;padding:15px 14px;background:radial-gradient(circle at 12% 0%,rgba(240,68,85,.28),transparent 35%),radial-gradient(circle at 92% 0%,rgba(34,121,255,.22),transparent 42%),rgba(17,26,46,.92);box-shadow:0 16px 42px rgba(0,0,0,.28)}
+    .hero-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.title{font-size:24px;font-weight:950;letter-spacing:.2px}.date{font-size:12px;color:#06101e;background:var(--gold);border-radius:999px;padding:6px 9px;font-weight:900;white-space:nowrap}.sub{margin-top:8px;font-size:13px;color:#c6d4ef;line-height:1.55}.risk{margin-top:8px;padding:8px 10px;border-radius:13px;background:rgba(255,209,102,.10);border:1px solid rgba(255,209,102,.22);color:#ffe5a6;font-size:12px;line-height:1.45}
+    .menu{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.menu button,.chip{border:1px solid var(--line);border-radius:15px;background:#0c1528;color:#cfe0ff;padding:10px 6px;font-weight:900;font-size:14px}.menu button.active,.chip.active{background:linear-gradient(135deg,rgba(240,68,85,.34),rgba(34,121,255,.27));border-color:rgba(255,255,255,.25);color:#fff}.chipbar{display:flex;gap:8px;overflow-x:auto;padding:2px 0 11px;margin-bottom:2px;scrollbar-width:none}.chipbar::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;min-width:84px}.chip small{display:block;color:var(--muted);font-weight:700;font-size:11px;margin-top:3px}
+    .card{border:1px solid var(--line);border-radius:24px;background:rgba(17,26,46,.92);padding:15px;margin:12px 0;box-shadow:0 12px 28px rgba(0,0,0,.18)}.game-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}.game-name{font-size:22px;font-weight:950}.money{color:#06101e;background:var(--green);border-radius:999px;padding:6px 9px;font-weight:950;font-size:12px;white-space:nowrap}.meta{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 6px}.pill{border:1px solid var(--line);background:#0b1324;border-radius:999px;padding:6px 9px;font-size:12px;color:#b9c8e8}.pill b{color:#fff}.play-name{font-size:15px;color:#dfe9ff;font-weight:900;margin:12px 0 8px}.ticket{padding:13px;border-radius:19px;background:var(--card2);border:1px solid var(--line);margin:10px 0}.ticket-title{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#d5e2fb;font-weight:900;font-size:14px;margin-bottom:9px}.tag{font-size:11px;color:var(--muted);font-weight:800}.label{font-size:12px;color:#9fb0d0;margin:7px 0 6px;font-weight:900}.balls{display:flex;gap:7px;flex-wrap:wrap}.ball{width:39px;height:39px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:950;font-size:15px;box-shadow:inset 0 -5px 9px rgba(0,0,0,.22),0 7px 15px rgba(0,0,0,.25)}.red{background:linear-gradient(#ff7984,#dc2539)}.blue{background:linear-gradient(#73acff,#1768e8)}.gold{background:linear-gradient(#ffe59a,#d99a00);color:#111}.purple{background:linear-gradient(#c8abff,#7447dc)}.divider{height:1px;background:var(--line);margin:10px 0}.rule{padding:10px 11px;border-radius:14px;background:#10182d;border:1px solid var(--line);margin:8px 0;color:#dce7ff;font-size:14px;line-height:1.55}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.btn{border:0;border-radius:16px;padding:13px 10px;font-weight:950;background:var(--gold);color:#07101f}.btn.secondary{background:#17223a;color:#dce7ff;border:1px solid var(--line)}
+    .panel{display:none}.panel.active{display:block}.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.quick-card{border:1px solid var(--line);border-radius:18px;background:#0b1324;padding:12px}.quick-card b{display:block;font-size:16px;margin-bottom:5px}.quick-card span{color:var(--muted);font-size:12px}.mini-balls{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}.mini-ball{width:25px;height:25px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:950}.detail{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.detail summary{color:#cfe0ff;font-weight:900}.detail p{font-size:13px;color:var(--muted);line-height:1.7;margin:9px 0 0}.footer{font-size:12px;color:var(--muted);text-align:center;line-height:1.7;margin-top:16px}
+    .bottom-nav{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:20;width:min(740px,calc(100vw - 20px));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:7px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:rgba(8,14,27,.88);backdrop-filter:blur(18px);box-shadow:0 14px 38px rgba(0,0,0,.38)}.bottom-nav button{border:0;border-radius:16px;background:transparent;color:#93a6c8;padding:8px 4px;font-weight:950}.bottom-nav button.active{background:#18233c;color:#fff}.empty{padding:24px;text-align:center;color:var(--muted)}
+    @media(max-width:430px){.app{padding-left:10px;padding-right:10px}.top{margin-left:-10px;margin-right:-10px;padding-left:10px;padding-right:10px}.title{font-size:22px}.ball{width:37px;height:37px}.actions{grid-template-columns:1fr}.quick{grid-template-columns:1fr}.menu button{font-size:13px;padding:9px 4px}}
   </style>
 </head>
 <body>
-<div class="wrap">
-  <section class="hero">
-    <div class="tagline">每日固定，不刷新重抽</div>
-    <h1>彩票每日固定策略号</h1>
-    <div class="sub">把彩票站常见玩法都做成“当天固定方案”：双色球、福彩3D、七乐彩、快乐8、大乐透、排列3/5、七星彩，以及竞彩/刮刮乐纪律清单。刷新网页、换手机打开，同一天结果都不变。</div>
-    <div class="risk">重要提醒：彩票开奖是独立随机事件，没有稳定可预测规律。本页只做预算纪律、结构覆盖和减少乱买，不代表保证中奖；核心原则是不倍投、不追仓。</div>
+<div class="app">
+  <div class="top">
+    <section class="hero">
+      <div class="hero-row"><div class="title">今日彩票号码</div><div class="date" id="dateBadge">--</div></div>
+      <div class="sub">只放今天要买的号码。红蓝球按之前的球形显示，其他说明收起来，不再一页到底。</div>
+      <div class="risk">提醒：彩票随机，固定预算娱乐，不倍投。</div>
+    </section>
+    <nav class="menu" id="topMenu"></nav>
+  </div>
+
+  <div class="chipbar" id="gameChips"></div>
+
+  <main id="main"><div class="empty">正在读取今日号码...</div></main>
+
+  <section class="card panel" id="allPanel">
+    <div class="game-head"><div><div class="game-name">全部号码</div><div class="sub">精简版，方便到店核对。</div></div></div>
+    <div id="quickList" class="quick"></div>
+    <div class="actions"><button class="btn" onclick="copyAllPlans()">复制全部</button><button class="btn secondary" onclick="switchMenu('ssq')">回双色球</button></div>
   </section>
 
-  <section class="card">
-    <h2>今日全部购买清单</h2>
-    <p class="note">你刚才要买的号码都集中放这里：不用一个个点，打开网页先看这块就能照着买。</p>
-    <div id="allBuyList" class="buy-list"><div class="loading">正在整理今日全部号码...</div></div>
-    <div class="actions copy-all"><button class="btn" onclick="copyAllPlans()">复制全部购买清单</button></div>
-  </section>
-
-  <div class="game-tabs" id="gameTabs"><div class="loading">正在读取今日全部策略...</div></div>
-
-  <section class="card">
-    <h2 id="gameName">加载中...</h2>
-    <div class="row" id="gameTags"></div>
-    <p class="desc" id="gameDesc"></p>
-    <div class="risk" id="gameRisk"></div>
-    <div class="play-tabs" id="playTabs"></div>
-    <h3 id="playName">今天就买这组</h3>
-    <p class="note" id="playWhy"></p>
-    <div id="tickets"><div class="loading">正在读取今日固定号码...</div></div>
-    <div class="actions"><button class="btn" onclick="copyPlan()">复制当前彩种购买清单</button></div>
-  </section>
-
-  <section class="card">
-    <h2>今日数据依据</h2>
-    <div class="grid" id="historyStats"></div>
-    <p class="note" id="methodText"></p>
-  </section>
-
-  <section class="card">
-    <h2>怎么买更稳</h2>
-    <ol class="steps">
-      <li>每天只照当前彩种的“主推方案”买，不来回刷新重抽。</li>
-      <li>每种彩票单独固定预算，不因为某天没中就倍投。</li>
-      <li>双色球/大乐透偏大奖覆盖；3D/排列3偏小额反馈；快乐8、刮刮乐只做娱乐轻仓。</li>
-      <li>开奖后只复盘命中，不追仓、不临时加码。</li>
-    </ol>
-  </section>
-
-  <section class="card">
-    <h2>彩票站还能买什么</h2>
-    <p class="note">一般分两大类：<b>福利彩票</b>（民政体系）和 <b>体育彩票</b>（体育体系）。不同门店资质不一样，不是每家都全卖；实际以店里终端能出票为准。</p>
-    <div class="lottery-grid">
-      <div class="lottery-card"><b>双色球</b><span class="type">福彩｜红球33选6 + 蓝球16选1</span><p>当前主策略。奖池大、规则固定，适合56元复式/胆拖预算模型。</p></div>
-      <div class="lottery-card"><b>福彩3D / 排列3</b><span class="type">数字型｜000-999</span><p>每天开奖，概率结构清楚，适合小额直选/组选模型。</p></div>
-      <div class="lottery-card"><b>七乐彩 / 快乐8</b><span class="type">福彩｜多号码覆盖</span><p>可做固定覆盖，但玩法多、注数容易失控，必须限额。</p></div>
-      <div class="lottery-card"><b>大乐透 / 排列5 / 七星彩</b><span class="type">体彩｜大盘+数字型</span><p>大乐透最适合和双色球并行；排列5/七星彩只建议轻仓。</p></div>
-    </div>
-  </section>
-
-  <div class="footer">本工具只做组合覆盖、统计评分和预算提醒；彩票是随机游戏，请理性娱乐。</div>
+  <div class="footer">不展示预测软件话术，只做今日固定号码和预算提醒。</div>
 </div>
+
+<nav class="bottom-nav" id="bottomNav"></nav>
+
 <script>
-let data=null, gameIndex=0, playIndex=0;
-function pad(n){return String(n).padStart(2,'0')}
-function balls(nums,type){return `<div class="balls">${(nums||[]).map(n=>`<span class="ball ${type}">${pad(n)}</span>`).join('')}</div>`}
-function digits(nums){return `<div class="balls">${(nums||[]).map(n=>`<span class="ball gold">${n}</span>`).join('')}</div>`}
-function renderTabs(){
-  const box=document.getElementById('gameTabs');
-  box.innerHTML=data.games.map((g,i)=>`<button class="tab ${i===gameIndex?'active':''}" onclick="gameIndex=${i};playIndex=0;render()">${g.name}<small>${g.group}｜${g.budget}</small></button>`).join('');
-}
-function render(){
-  if(!data) return;
-  renderTabs();
-  const g=data.games[gameIndex];
-  const play=g.plays[playIndex]||g.plays[0];
-  document.getElementById('gameName').textContent=g.name+' 每日固定策略';
-  document.getElementById('gameTags').innerHTML=`<span class="pill">日期 <strong>${data.date}</strong></span><span class="pill">类别 <strong>${g.group}</strong></span><span class="pill">预算 <strong>${g.budget}</strong></span><span class="pill">开奖 <strong>${g.frequency||'-'}</strong></span>`;
-  document.getElementById('gameDesc').textContent=g.desc||'';
-  document.getElementById('gameRisk').textContent=g.risk||data.notice;
-  document.getElementById('playTabs').innerHTML=g.plays.map((p,i)=>`<button class="tab ${i===playIndex?'active':''}" onclick="playIndex=${i};render()">${p.name}<small>${p.cost}｜${p.bets}</small></button>`).join('');
-  document.getElementById('playName').textContent=play.name;
-  document.getElementById('playWhy').textContent=play.why||'';
-  renderTickets(play.tickets||[]);
-  renderHistory(g);
-}
-function renderTickets(tickets){
-  document.getElementById('tickets').innerHTML=tickets.map((t,i)=>{
-    let html=`<div class="ticket"><div class="ticket-title"><b>第${i+1}组</b><span><span class="score">评分 ${t.score??'-'}</span></span></div>`;
-    if(t.red){ html+=`<div>红球</div>${balls(t.red,'red')}<div>蓝球</div>${balls(t.blue,'blue')}`; }
-    else if(t.front){ html+=`<div>前区</div>${balls(t.front,'red')}<div>后区</div>${balls(t.back,'blue')}`; }
-    else if(t.nums){ html+=`<div>号码</div>${balls(t.nums,'purple')}`; }
-    else if(t.digits){ html+=`<div>数字</div>${digits(t.digits)}<div class="mini">和值 ${t.sum}｜跨度 ${t.span}</div>`; }
-    else if(t.rules){ html+=t.rules.map((r,idx)=>`<div class="rule">${idx+1}. ${r}</div>`).join(''); }
-    return html+'</div>';
-  }).join('') || '<div class="risk">暂无方案</div>';
-}
-function listPairs(arr){return (arr||[]).map(x=>`${pad(x[0])}（${x[1]}次）`).join('、')}
-function renderHistory(g){
-  document.getElementById('historyStats').innerHTML=[
-    ['彩种',g.name],['今日固定',data.fixed_for_day?'是':'否'],['预算',g.budget],['最近开奖',g.latest_issue?g.latest_issue+'期':'按日签名']
-  ].map(x=>`<div class="stat"><b>${x[1]}</b><span>${x[0]}</span></div>`).join('');
-  const st=g.stats||{};
-  let extra='';
-  if(st.red_hot){extra=`<br><br><b>近样本红球热号：</b>${listPairs(st.red_hot)}<br><b>近样本红球冷号：</b>${listPairs(st.red_cold)}<br><b>近样本蓝球热号：</b>${listPairs(st.blue_hot)}<br><b>近样本蓝球冷号：</b>${listPairs(st.blue_cold)}`}
-  document.getElementById('methodText').innerHTML=`${g.method||data.notice}${extra}<br><br><span class="warn">说明：热冷/遗漏/日签名只用于固定方案和结构评分，不能当成下一期必出。</span>`;
-}
+let data=null;
+let currentMenu='ssq';
+let currentGameId='ssq';
+const menus=[
+  {id:'ssq',label:'双色球',games:['ssq']},
+  {id:'dlt',label:'大乐透',games:['dlt']},
+  {id:'digit',label:'数字票',games:['fc3d','pl3','pl5','qxc']},
+  {id:'more',label:'更多',games:['qlc','kl8','jczq','scratch']}
+];
+const pad=n=>String(n).padStart(2,'0');
+const findGame=id=>data.games.find(g=>g.id===id);
+const mainPlay=g=>(g.plays||[])[0]||{tickets:[]};
+function ballHtml(nums,type,mini=false){return `<div class="${mini?'mini-balls':'balls'}">${(nums||[]).map(n=>`<span class="${mini?'mini-ball':'ball'} ${type}">${pad(n)}</span>`).join('')}</div>`}
+function digitHtml(nums,mini=false){return `<div class="${mini?'mini-balls':'balls'}">${(nums||[]).map(n=>`<span class="${mini?'mini-ball':'ball'} gold">${n}</span>`).join('')}</div>`}
 function ticketText(t){
   if(t.red) return `红球 ${t.red.map(pad).join(' ')} + 蓝球 ${t.blue.map(pad).join(' ')}`;
   if(t.front) return `前区 ${t.front.map(pad).join(' ')} + 后区 ${t.back.map(pad).join(' ')}`;
   if(t.nums) return `号码 ${t.nums.map(pad).join(' ')}`;
-  if(t.digits) return `数字 ${t.digits.join('')}（和值${t.sum}，跨度${t.span}）`;
+  if(t.digits) return `数字 ${t.digits.join('')}`;
   if(t.rules) return t.rules.map((r,i)=>`${i+1}. ${r}`).join('；');
   return '';
 }
-function mainPlay(g){return (g.plays||[])[0]||{tickets:[]}}
-function buyLineHtml(t,i){return `<div class="buy-line"><b>第${i+1}组：</b>${ticketText(t)}</div>`}
-function renderAllBuyList(){
+function renderNav(){
+  const html=menus.map(m=>`<button class="${m.id===currentMenu?'active':''}" onclick="switchMenu('${m.id}')">${m.label}</button>`).join('');
+  document.getElementById('topMenu').innerHTML=html;
+  document.getElementById('bottomNav').innerHTML=html;
+}
+function switchMenu(id){
+  currentMenu=id;
+  const m=menus.find(x=>x.id===id)||menus[0];
+  currentGameId=m.games[0];
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchGame(id){currentGameId=id;render();window.scrollTo({top:0,behavior:'smooth'});}
+function renderChips(){
+  const m=menus.find(x=>x.id===currentMenu)||menus[0];
+  document.getElementById('gameChips').innerHTML=m.games.map(id=>{
+    const g=findGame(id); if(!g) return '';
+    return `<button class="chip ${id===currentGameId?'active':''}" onclick="switchGame('${id}')">${g.name}<small>${mainPlay(g).cost}</small></button>`;
+  }).join('') + `<button class="chip" onclick="showAll()">全部<small>总览</small></button>`;
+}
+function renderTicket(t,i){
+  let html=`<div class="ticket"><div class="ticket-title"><span>第${i+1}组</span><span class="tag">${t.score?'评分 '+Number(t.score).toFixed(1):'照单买'}</span></div>`;
+  if(t.red){ html+=`<div class="label">红球</div>${ballHtml(t.red,'red')}<div class="divider"></div><div class="label">蓝球</div>${ballHtml(t.blue,'blue')}`; }
+  else if(t.front){ html+=`<div class="label">前区</div>${ballHtml(t.front,'red')}<div class="divider"></div><div class="label">后区</div>${ballHtml(t.back,'blue')}`; }
+  else if(t.nums){ html+=`<div class="label">号码</div>${ballHtml(t.nums,'purple')}`; }
+  else if(t.digits){ html+=`<div class="label">数字</div>${digitHtml(t.digits)}<div class="label">和值 ${t.sum}｜跨度 ${t.span}</div>`; }
+  else if(t.rules){ html+=t.rules.map((r,idx)=>`<div class="rule">${idx+1}. ${r}</div>`).join(''); }
+  return html+'</div>';
+}
+function renderGame(){
+  const g=findGame(currentGameId); if(!g) return '<div class="empty">暂无号码</div>';
+  const p=mainPlay(g);
+  return `<section class="card">
+    <div class="game-head"><div><div class="game-name">${g.name}</div><div class="play-name">${p.name.replace(/：.*/,'')}</div></div><div class="money">${p.cost}</div></div>
+    <div class="meta"><span class="pill">${g.group}</span><span class="pill"><b>${p.bets}</b></span><span class="pill">${g.frequency||'今日固定'}</span></div>
+    ${(p.tickets||[]).map(renderTicket).join('')}
+    <div class="actions"><button class="btn" onclick="copyPlan('${g.id}')">复制本项</button><button class="btn secondary" onclick="showAll()">看全部</button></div>
+    <details class="detail"><summary>展开说明</summary><p>${g.desc||''}<br>${g.risk||data.notice}</p></details>
+  </section>`;
+}
+function renderQuickCard(g){
+  const p=mainPlay(g), t=(p.tickets||[])[0]||{};
+  let balls='';
+  if(t.red) balls=`${ballHtml(t.red,'red',true)}${ballHtml(t.blue,'blue',true)}`;
+  if(t.front) balls=`${ballHtml(t.front,'red',true)}${ballHtml(t.back,'blue',true)}`;
+  if(t.nums) balls=ballHtml(t.nums,'purple',true);
+  if(t.digits) balls=digitHtml(t.digits,true);
+  if(t.rules) balls='<span class="sub">纪律清单</span>';
+  return `<div class="quick-card"><b>${g.name}</b><span>${p.cost}｜${p.bets}</span>${balls}<div class="sub" style="margin-top:8px">${(p.tickets||[]).map((x,i)=>`第${i+1}组：${ticketText(x)}`).join('<br>')}</div></div>`;
+}
+function showAll(){
+  document.getElementById('main').innerHTML='';
+  document.getElementById('allPanel').classList.add('active');
+  renderNav(); renderChips(); renderQuickList(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderQuickList(){
+  const ids=['ssq','dlt','fc3d','pl3','pl5','qxc','qlc','kl8'];
+  document.getElementById('quickList').innerHTML=ids.map(findGame).filter(Boolean).map(renderQuickCard).join('');
+}
+function render(){
   if(!data) return;
-  const showIds=['ssq','dlt','fc3d','pl3','pl5','qxc','qlc','kl8','jczq','scratch'];
-  const games=showIds.map(id=>data.games.find(g=>g.id===id)).filter(Boolean);
-  document.getElementById('allBuyList').innerHTML=games.map(g=>{
-    const p=mainPlay(g);
-    const lines=(p.tickets||[]).map(buyLineHtml).join('');
-    return `<div class="buy-card"><h3>${g.name}</h3><div class="mini">${p.name}｜${p.cost}｜${p.bets}</div>${lines}</div>`;
-  }).join('');
+  document.getElementById('allPanel').classList.remove('active');
+  document.getElementById('dateBadge').textContent=data.date;
+  renderNav(); renderChips();
+  document.getElementById('main').innerHTML=renderGame();
+}
+function copyPlan(id){
+  const g=findGame(id||currentGameId), p=mainPlay(g);
+  const txt=[`${g.name} ${data.date}`,`金额：${p.cost}｜${p.bets}`,...(p.tickets||[]).map((t,i)=>`第${i+1}组：${ticketText(t)}`),'提醒：固定预算，不倍投。'].join('\n');
+  navigator.clipboard?.writeText(txt); alert('已复制');
 }
 function copyAllPlans(){
-  if(!data) return;
-  const showIds=['ssq','dlt','fc3d','pl3','pl5','qxc','qlc','kl8','jczq','scratch'];
-  const lines=[`今日全部购买彩票清单：${data.date}`];
-  showIds.map(id=>data.games.find(g=>g.id===id)).filter(Boolean).forEach(g=>{
-    const p=mainPlay(g);
-    lines.push('', `${g.name}｜${p.name}｜${p.cost}｜${p.bets}`);
-    (p.tickets||[]).forEach((t,i)=>lines.push(`第${i+1}组：${ticketText(t)}`));
-  });
-  lines.push('', '提醒：同一天不刷新重抽；彩票随机，固定预算，不倍投。');
-  navigator.clipboard?.writeText(lines.join('\n')); alert('全部购买清单已复制');
+  const ids=['ssq','dlt','fc3d','pl3','pl5','qxc','qlc','kl8'];
+  const lines=[`今日彩票号码 ${data.date}`];
+  ids.map(findGame).filter(Boolean).forEach(g=>{const p=mainPlay(g);lines.push('',`${g.name}｜${p.cost}｜${p.bets}`);(p.tickets||[]).forEach((t,i)=>lines.push(`第${i+1}组：${ticketText(t)}`));});
+  lines.push('', '提醒：固定预算娱乐，不倍投。');
+  navigator.clipboard?.writeText(lines.join('\n')); alert('全部已复制');
 }
-function copyPlan(){
-  if(!data) return;
-  const g=data.games[gameIndex]; const p=g.plays[playIndex]||g.plays[0];
-  const txt=[`${g.name}今日固定策略：${data.date}`,`方案：${p.name}`,`金额：${p.cost}，${p.bets}`,...(p.tickets||[]).map((t,i)=>`第${i+1}组：${ticketText(t)}`),'提醒：同一天不刷新重抽；理性娱乐，不倍投。'].join('\n');
-  navigator.clipboard?.writeText(txt); alert('当前购买清单已复制');
-}
-fetch('data/all_daily_plans.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{data=j;renderAllBuyList();render();}).catch(e=>{document.getElementById('tickets').innerHTML='<div class="risk">读取今日号码失败，请稍后刷新页面。</div>';console.error(e);});
+fetch('data/all_daily_plans.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{data=j;render();}).catch(e=>{document.getElementById('main').innerHTML='<div class="card">读取号码失败，请刷新。</div>';console.error(e);});
 </script>
 </body>
 </html>
