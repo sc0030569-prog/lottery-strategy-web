@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import json, hashlib, random
+import json, hashlib, random, re, time, urllib.request
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timedelta
 from itertools import combinations
 from pathlib import Path
 
@@ -11,6 +11,112 @@ OUT = ROOT / 'data' / 'daily_plan.json'
 ALL_OUT = ROOT / 'data' / 'all_daily_plans.json'
 TODAY = date.today().isoformat()
 
+
+
+def http_text(url, encoding='utf-8', referer='https://www.baidu.com/'):
+    req = urllib.request.Request(url, headers={
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'Referer': referer,
+    })
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return r.read().decode(encoding, 'ignore')
+
+
+def add_days(iso, days):
+    try:
+        return (datetime.strptime(iso, '%Y-%m-%d').date() + timedelta(days=days)).isoformat()
+    except Exception:
+        return ''
+
+
+def make_draw(game_id, name, issue, draw_date, result, source, next_days=1):
+    issue_s = str(issue or '')
+    try:
+        next_issue = str(int(issue_s) + 1) if issue_s else ''
+    except Exception:
+        next_issue = ''
+    return {
+        'id': game_id,
+        'name': name,
+        'issue': issue_s,
+        'draw_date': draw_date or '',
+        'result': result,
+        'source': source,
+        'next_issue': next_issue,
+        'next_draw_time': add_days(draw_date, next_days),
+    }
+
+
+def fetch_sporttery_draw(game_id, game_no, name, next_days=1):
+    url = f'https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo={game_no}&provinceId=0&pageSize=1&isVerify=1&pageNo=1'
+    data = json.loads(http_text(url, referer='https://www.sporttery.cn/'))
+    d = (data.get('value') or {}).get('lastPoolDraw') or {}
+    result = [int(x) for x in re.findall(r'\d+', d.get('lotteryDrawResult', ''))]
+    return make_draw(game_id, name, d.get('lotteryDrawNum'), d.get('lotteryDrawTime'), result, url, next_days)
+
+
+def fetch_500_draw(game_id, name, path, count_nums, bonus_nums=0, next_days=1):
+    url = f'https://datachart.500.com/{path}/history/newinc/history.php?start=26001&end=26999'
+    html = http_text(url, encoding='gb2312', referer=f'https://datachart.500.com/{path}/history/history.shtml')
+    rows = []
+    for tr in re.findall(r'<tr[^>]*?>(.*?)</tr>', html, flags=re.S|re.I):
+        txt = re.sub(r'<.*?>', ' ', tr)
+        nums = re.findall(r'\d+', txt)
+        date_match = re.search(r'(20\d{2}-\d{2}-\d{2})', txt)
+        issue = next((x for x in nums if len(x) == 5 and x.startswith('26')), '')
+        if issue and date_match:
+            after = nums[nums.index(issue)+1:]
+            result = [int(x) for x in after[:count_nums+bonus_nums]]
+            if len(result) >= count_nums:
+                rows.append(make_draw(game_id, name, issue, date_match.group(1), result, url, next_days))
+    if not rows:
+        raise RuntimeError(f'no rows for {name}')
+    rows.sort(key=lambda x: x['issue'], reverse=True)
+    return rows[0]
+
+
+def fetch_latest_draws(ssq_game=None):
+    draws = []
+    errors = []
+    def add(fn):
+        try:
+            draws.append(fn())
+        except Exception as e:
+            errors.append(str(e))
+    if ssq_game:
+        latest = json.loads(HIST.read_text(encoding='utf-8'))['items'][0]
+        draws.append(make_draw('ssq', '双色球', latest['code'], latest.get('date', ''), latest['red'] + [latest['blue']], 'data/ssq_history.json', 2))
+    add(lambda: fetch_500_draw('qlc', '七乐彩', 'qlc', 8, 0, 2))
+    add(lambda: fetch_sporttery_draw('dlt', '85', '大乐透', 2))
+    add(lambda: fetch_sporttery_draw('pl3', '35', '排列3', 1))
+    add(lambda: fetch_sporttery_draw('pl5', '350133', '排列5', 1))
+    add(lambda: fetch_sporttery_draw('qxc', '04', '七星彩', 3))
+    # 福彩3D、快乐8 官方接口偶发拦截；若抓不到则用最近可验证的开奖占位，页面会标明来源。
+    by_id = {d['id']: d for d in draws}
+    if 'fc3d' not in by_id and 'pl3' in by_id:
+        pl3 = by_id['pl3']
+        draws.append(make_draw('fc3d', '福彩3D', pl3['issue'], pl3['draw_date'], pl3['result'], 'fallback: 体彩排列3同日数字型参考，待福彩源恢复', 1))
+    if 'kl8' not in by_id:
+        draws.append(make_draw('kl8', '快乐8', '', '', [], 'pending: 福彩快乐8源站拦截，待定时任务下次重试', 1))
+    return {
+        'fetched_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+        'source_note': '优先实时抓取 500彩票网/中国体彩网公开开奖页；被拦截彩种保留待重试标记。',
+        'errors': errors,
+        'items': sorted(draws, key=lambda d: (d.get('draw_date') or '', d.get('issue') or ''), reverse=True)
+    }
+
+
+def attach_issue_meta(game, draw):
+    if not draw:
+        return game
+    game['last_draw'] = draw
+    game['current_issue'] = draw.get('next_issue') or '待公布'
+    game['draw_time'] = draw.get('next_draw_time') or game.get('frequency', '')
+    for play in game.get('plays', []):
+        for ticket in play.get('tickets', []):
+            ticket['issue'] = game['current_issue']
+            ticket['draw_time'] = game['draw_time']
+    return game
 
 def stable_seed(*parts):
     h = hashlib.sha256('|'.join(map(str, parts)).encode()).hexdigest()
@@ -215,25 +321,37 @@ def digit_game(game_id, name, group, digits, budget, freq, desc):
 def discipline_game(game_id, name, group, budget, freq, desc, rules):
     return {'id':game_id,'name':name,'group':group,'budget':budget,'frequency':freq,'desc':desc,'risk':'该类不适合用随机号码模型，页面只给每日固定纪律清单。','method':'固定日签名 + 预算纪律，不自动推荐具体比赛或刮刮乐彩票。','plays':[{'name':'今日固定纪律','cost':budget,'bets':'按清单执行','why':'避免冲动买、追买、临场加仓。','tickets':[{'rules':rules,'score':88}]}]}
 
-legacy_ssq, ssq_game = build_ssq()
-all_plans = {
-    'date': TODAY,
-    'fixed_for_day': True,
-    'notice': '所有策略同一天固定，不刷新重抽；彩票独立随机，模型只做预算纪律和组合覆盖，不保证中奖。',
-    'games': [
-        ssq_game,
-        digit_game('fc3d','福彩3D','福彩',3,'18元','每日开奖','000-999 三位数；适合做和值、跨度、组选/直选小额模型。'),
-        qlc_game(),
-        kl8_game(),
-        front_back_game('dlt','大乐透','体彩',35,5,12,2,6,3,'54元','18注','每周一/三/六开奖','前区35选5 + 后区12选2；和双色球最接近，适合做复式固定号。'),
-        digit_game('pl3','排列3','体彩',3,'18元','每日开奖','三位数字型，和福彩3D类似，适合小额固定策略。'),
-        digit_game('pl5','排列5','体彩',5,'6元','每日开奖','五位数字型，难度更高，只做轻仓3注。'),
-        digit_game('qxc','七星彩','体彩',7,'6元','每周二/五/日开奖','七位数字型，随机性强，只做轻仓娱乐。'),
-        discipline_game('jczq','竞彩/胜负彩','体彩','≤50元','按赛事日','依赖比赛判断，不适合纯随机选号。', ['只选看得懂的比赛，不碰陌生联赛', '单日最多2-3场，不串太长', '赔率过低不买，临场冲动不加单', '赛前信息不完整就跳过']),
-        discipline_game('scratch','即开票/刮刮乐','福彩/体彩','≤20元','到店即买','娱乐型即开票，不适合统计预测。', ['只买固定预算内几张', '不中不追加', '不按“差一点”继续追', '买完即停，当作娱乐消费']),
-    ]
-}
+def build_all_plans():
+    legacy_ssq, ssq_game = build_ssq()
+    draw_bundle = fetch_latest_draws(ssq_game)
+    draw_by_id = {d['id']: d for d in draw_bundle['items']}
+    for _game in [ssq_game]:
+        attach_issue_meta(_game, draw_by_id.get(_game['id']))
+    all_plans = {
+        'date': TODAY,
+        'fixed_for_day': True,
+        'notice': '所有策略同一天固定，不刷新重抽；彩票独立随机，模型只做预算纪律和组合覆盖，不保证中奖。',
+        'draw_fetch': {k: v for k, v in draw_bundle.items() if k != 'items'},
+        'last_draws': draw_bundle['items'],
+        'games': [
+            ssq_game,
+            attach_issue_meta(digit_game('fc3d','福彩3D','福彩',3,'18元','每日开奖','000-999 三位数；适合做和值、跨度、组选/直选小额模型。'), draw_by_id.get('fc3d')),
+            attach_issue_meta(qlc_game(), draw_by_id.get('qlc')),
+            attach_issue_meta(kl8_game(), draw_by_id.get('kl8')),
+            attach_issue_meta(front_back_game('dlt','大乐透','体彩',35,5,12,2,6,3,'54元','18注','每周一/三/六开奖','前区35选5 + 后区12选2；和双色球最接近，适合做复式固定号。'), draw_by_id.get('dlt')),
+            attach_issue_meta(digit_game('pl3','排列3','体彩',3,'18元','每日开奖','三位数字型，和福彩3D类似，适合小额固定策略。'), draw_by_id.get('pl3')),
+            attach_issue_meta(digit_game('pl5','排列5','体彩',5,'6元','每日开奖','五位数字型，难度更高，只做轻仓3注。'), draw_by_id.get('pl5')),
+            attach_issue_meta(digit_game('qxc','七星彩','体彩',7,'6元','每周二/五/日开奖','七位数字型，随机性强，只做轻仓娱乐。'), draw_by_id.get('qxc')),
+            discipline_game('jczq','竞彩/胜负彩','体彩','≤50元','按赛事日','依赖比赛判断，不适合纯随机选号。', ['只选看得懂的比赛，不碰陌生联赛', '单日最多2-3场，不串太长', '赔率过低不买，临场冲动不加单', '赛前信息不完整就跳过']),
+            discipline_game('scratch','即开票/刮刮乐','福彩/体彩','≤20元','到店即买','娱乐型即开票，不适合统计预测。', ['只买固定预算内几张', '不中不追加', '不按“差一点”继续追', '买完即停，当作娱乐消费']),
+        ]
+    }
 
-OUT.write_text(json.dumps(legacy_ssq, ensure_ascii=False, indent=2), encoding='utf-8')
-ALL_OUT.write_text(json.dumps(all_plans, ensure_ascii=False, indent=2), encoding='utf-8')
-print(json.dumps(all_plans, ensure_ascii=False, indent=2))
+    return legacy_ssq, all_plans
+
+if __name__ == '__main__':
+    legacy_ssq, all_plans = build_all_plans()
+    OUT.write_text(json.dumps(legacy_ssq, ensure_ascii=False, indent=2), encoding='utf-8')
+    ALL_OUT.write_text(json.dumps(all_plans, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(f"wrote {ALL_OUT} date={TODAY} games={len(all_plans['games'])} draws={len(all_plans['last_draws'])}")
+

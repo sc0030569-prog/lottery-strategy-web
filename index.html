@@ -51,6 +51,7 @@ const menus=[
   {id:'ssq',label:'双色球',games:['ssq']},
   {id:'dlt',label:'大乐透',games:['dlt']},
   {id:'digit',label:'数字票',games:['fc3d','pl3','pl5','qxc']},
+  {id:'draws',label:'昨日开奖',games:[]},
   {id:'more',label:'更多',games:['qlc','kl8','jczq','scratch']}
 ];
 const pad=n=>String(n).padStart(2,'0');
@@ -58,6 +59,8 @@ const findGame=id=>data.games.find(g=>g.id===id);
 const mainPlay=g=>(g.plays||[])[0]||{tickets:[]};
 function ballHtml(nums,type,mini=false){return `<div class="${mini?'mini-balls':'balls'}">${(nums||[]).map(n=>`<span class="${mini?'mini-ball':'ball'} ${type}">${pad(n)}</span>`).join('')}</div>`}
 function digitHtml(nums,mini=false){return `<div class="${mini?'mini-balls':'balls'}">${(nums||[]).map(n=>`<span class="${mini?'mini-ball':'ball'} gold">${n}</span>`).join('')}</div>`}
+function drawResultHtml(d,mini=false){const r=d.result||[]; if(!r.length) return '<div class="sub">开奖数据待抓取</div>'; if(['ssq','dlt'].includes(d.id)){const split=d.id==='ssq'?r.length-1:r.length-2;return ballHtml(r.slice(0,split),'red',mini)+ballHtml(r.slice(split),'blue',mini)} return d.id.includes('pl')||d.id==='fc3d'||d.id==='qxc'?digitHtml(r,mini):ballHtml(r,'purple',mini)}
+function ticketMeta(t){return `<div class="label">期号 ${t.issue||'待公布'}｜开奖时间 ${t.draw_time||'待公布'}</div>`}
 function ticketText(t){
   if(t.red) return `红球 ${t.red.map(pad).join(' ')} + 蓝球 ${t.blue.map(pad).join(' ')}`;
   if(t.front) return `前区 ${t.front.map(pad).join(' ')} + 后区 ${t.back.map(pad).join(' ')}`;
@@ -74,13 +77,14 @@ function renderNav(){
 function switchMenu(id){
   currentMenu=id;
   const m=menus.find(x=>x.id===id)||menus[0];
-  currentGameId=m.games[0];
+  currentGameId=m.games[0]||currentGameId;
   render();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function switchGame(id){currentGameId=id;render();window.scrollTo({top:0,behavior:'smooth'});}
 function renderChips(){
   const m=menus.find(x=>x.id===currentMenu)||menus[0];
+  if(currentMenu==='draws'){document.getElementById('gameChips').innerHTML=`<button class="chip active">开奖核对<small>实时抓取</small></button><button class="chip" onclick="showAll()">全部<small>总览</small></button>`;return;}
   document.getElementById('gameChips').innerHTML=m.games.map(id=>{
     const g=findGame(id); if(!g) return '';
     return `<button class="chip ${id===currentGameId?'active':''}" onclick="switchGame('${id}')">${g.name}<small>${mainPlay(g).cost}</small></button>`;
@@ -93,6 +97,7 @@ function renderTicket(t,i){
   else if(t.nums){ html+=`<div class="label">号码</div>${ballHtml(t.nums,'purple')}`; }
   else if(t.digits){ html+=`<div class="label">数字</div>${digitHtml(t.digits)}<div class="label">和值 ${t.sum}｜跨度 ${t.span}</div>`; }
   else if(t.rules){ html+=t.rules.map((r,idx)=>`<div class="rule">${idx+1}. ${r}</div>`).join(''); }
+  if(t.issue||t.draw_time) html+=ticketMeta(t);
   return html+'</div>';
 }
 function renderGame(){
@@ -100,7 +105,7 @@ function renderGame(){
   const p=mainPlay(g);
   return `<section class="card">
     <div class="game-head"><div><div class="game-name">${g.name}</div><div class="play-name">${p.name.replace(/：.*/,'')}</div></div><div class="money">${p.cost}</div></div>
-    <div class="meta"><span class="pill">${g.group}</span><span class="pill"><b>${p.bets}</b></span><span class="pill">${g.frequency||'今日固定'}</span></div>
+    <div class="meta"><span class="pill">${g.group}</span><span class="pill"><b>${p.bets}</b></span><span class="pill">期号 ${g.current_issue||'待公布'}</span><span class="pill">开奖时间 ${g.draw_time||g.frequency||'今日固定'}</span></div>
     ${(p.tickets||[]).map(renderTicket).join('')}
     <div class="actions"><button class="btn" onclick="copyPlan('${g.id}')">复制本项</button><button class="btn secondary" onclick="showAll()">看全部</button></div>
     <details class="detail"><summary>展开说明</summary><p>${g.desc||''}<br>${g.risk||data.notice}</p></details>
@@ -114,7 +119,7 @@ function renderQuickCard(g){
   if(t.nums) balls=ballHtml(t.nums,'purple',true);
   if(t.digits) balls=digitHtml(t.digits,true);
   if(t.rules) balls='<span class="sub">纪律清单</span>';
-  return `<div class="quick-card"><b>${g.name}</b><span>${p.cost}｜${p.bets}</span>${balls}<div class="sub" style="margin-top:8px">${(p.tickets||[]).map((x,i)=>`第${i+1}组：${ticketText(x)}`).join('<br>')}</div></div>`;
+  return `<div class="quick-card"><b>${g.name}</b><span>${p.cost}｜${p.bets}｜期号 ${g.current_issue||'待公布'}｜开奖 ${g.draw_time||'待公布'}</span>${balls}<div class="sub" style="margin-top:8px">${(p.tickets||[]).map((x,i)=>`第${i+1}组：${ticketText(x)}｜期号 ${x.issue||g.current_issue||'待公布'}｜开奖 ${x.draw_time||g.draw_time||'待公布'}`).join('<br>')}</div></div>`;
 }
 function showAll(){
   document.getElementById('main').innerHTML='';
@@ -125,22 +130,27 @@ function renderQuickList(){
   const ids=['ssq','dlt','fc3d','pl3','pl5','qxc','qlc','kl8'];
   document.getElementById('quickList').innerHTML=ids.map(findGame).filter(Boolean).map(renderQuickCard).join('');
 }
+function renderDraws(){
+  const list=(data.last_draws||[]);
+  const note=(data.draw_fetch&&data.draw_fetch.source_note)||'开奖数据实时抓取';
+  return `<section class="card"><div class="game-head"><div><div class="game-name">昨日开奖</div><div class="play-name">开奖核对｜${(data.draw_fetch&&data.draw_fetch.fetched_at)||''}</div></div><div class="money">实时</div></div><div class="sub">${note}</div>${list.map(d=>`<div class="ticket"><div class="ticket-title"><span>${d.name}</span><span class="tag">第${d.issue||'待公布'}期</span></div>${drawResultHtml(d)}<div class="label">开奖日期 ${d.draw_date||'待公布'}｜下一期 ${d.next_issue||'待公布'}｜预计开奖 ${d.next_draw_time||'待公布'}</div></div>`).join('')}</section>`;
+}
 function render(){
   if(!data) return;
   document.getElementById('allPanel').classList.remove('active');
   document.getElementById('dateBadge').textContent=data.date;
   renderNav(); renderChips();
-  document.getElementById('main').innerHTML=renderGame();
+  document.getElementById('main').innerHTML=currentMenu==='draws'?renderDraws():renderGame();
 }
 function copyPlan(id){
   const g=findGame(id||currentGameId), p=mainPlay(g);
-  const txt=[`${g.name} ${data.date}`,`金额：${p.cost}｜${p.bets}`,...(p.tickets||[]).map((t,i)=>`第${i+1}组：${ticketText(t)}`),'提醒：固定预算，不倍投。'].join('\n');
+  const txt=[`${g.name} ${data.date}`,`金额：${p.cost}｜${p.bets}`,`期号：${g.current_issue||'待公布'}｜开奖时间：${g.draw_time||'待公布'}`,...(p.tickets||[]).map((t,i)=>`第${i+1}组：${ticketText(t)}｜期号 ${t.issue||g.current_issue||'待公布'}｜开奖 ${t.draw_time||g.draw_time||'待公布'}`),'提醒：固定预算，不倍投。'].join('\n');
   navigator.clipboard?.writeText(txt); alert('已复制');
 }
 function copyAllPlans(){
   const ids=['ssq','dlt','fc3d','pl3','pl5','qxc','qlc','kl8'];
   const lines=[`今日彩票号码 ${data.date}`];
-  ids.map(findGame).filter(Boolean).forEach(g=>{const p=mainPlay(g);lines.push('',`${g.name}｜${p.cost}｜${p.bets}`);(p.tickets||[]).forEach((t,i)=>lines.push(`第${i+1}组：${ticketText(t)}`));});
+  ids.map(findGame).filter(Boolean).forEach(g=>{const p=mainPlay(g);lines.push('',`${g.name}｜${p.cost}｜${p.bets}｜期号 ${g.current_issue||'待公布'}｜开奖 ${g.draw_time||'待公布'}`);(p.tickets||[]).forEach((t,i)=>lines.push(`第${i+1}组：${ticketText(t)}｜期号 ${t.issue||g.current_issue||'待公布'}｜开奖 ${t.draw_time||g.draw_time||'待公布'}`));});
   lines.push('', '提醒：固定预算娱乐，不倍投。');
   navigator.clipboard?.writeText(lines.join('\n')); alert('全部已复制');
 }
