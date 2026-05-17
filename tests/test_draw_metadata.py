@@ -33,7 +33,7 @@ def main():
                 assert_true(ticket.get('issue') == game['current_issue'], f"{game['name']} 选注缺少或期号不一致")
                 assert_true(ticket.get('draw_time') == game['draw_time'], f"{game['name']} 选注缺少或开奖时间不一致")
     html = (ROOT / 'index.html').read_text(encoding='utf-8')
-    for marker in ['昨日开奖', '开奖核对', 'renderDraws', '期号', '开奖时间']:
+    for marker in ['开奖记录', '往期开奖记录', 'renderDraws', '期号', '开奖时间']:
         assert_true(marker in html, f'页面缺少标记: {marker}')
     print('ok')
 
