@@ -1,9 +1,9 @@
 {
-  "date": "2026-05-29",
+  "date": "2026-05-30",
   "fixed_for_day": true,
   "notice": "所有策略同一天固定，不刷新重抽；彩票独立随机，模型只做预算纪律和组合覆盖，不保证中奖。",
   "draw_fetch": {
-    "fetched_at": "2026-05-29 09:17:34",
+    "fetched_at": "2026-05-30 09:18:11",
     "source_note": "优先实时抓取 500彩票网/中国体彩网公开开奖页；被拦截彩种保留待重试标记。",
     "errors": []
   },
@@ -11,46 +11,83 @@
     {
       "id": "pl3",
       "name": "排列3",
-      "issue": "26138",
-      "draw_date": "2026-05-28",
+      "issue": "26139",
+      "draw_date": "2026-05-29",
       "result": [
-        2,
-        6,
-        3
+        1,
+        9,
+        8
       ],
       "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=35&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
-      "next_issue": "26139",
-      "next_draw_time": "2026-05-29"
+      "next_issue": "26140",
+      "next_draw_time": "2026-05-30"
     },
     {
       "id": "pl5",
       "name": "排列5",
-      "issue": "26138",
-      "draw_date": "2026-05-28",
+      "issue": "26139",
+      "draw_date": "2026-05-29",
       "result": [
-        2,
-        6,
-        3,
-        5,
-        6
+        1,
+        9,
+        8,
+        1,
+        1
       ],
       "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=350133&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
-      "next_issue": "26139",
-      "next_draw_time": "2026-05-29"
+      "next_issue": "26140",
+      "next_draw_time": "2026-05-30"
     },
     {
       "id": "fc3d",
       "name": "福彩3D",
-      "issue": "26138",
-      "draw_date": "2026-05-28",
+      "issue": "26139",
+      "draw_date": "2026-05-29",
       "result": [
-        2,
-        6,
-        3
+        1,
+        9,
+        8
       ],
       "source": "fallback: 体彩排列3同日数字型参考，待福彩源恢复",
-      "next_issue": "26139",
-      "next_draw_time": "2026-05-29"
+      "next_issue": "26140",
+      "next_draw_time": "2026-05-30"
+    },
+    {
+      "id": "qlc",
+      "name": "七乐彩",
+      "issue": "26060",
+      "draw_date": "2026-05-29",
+      "result": [
+        2,
+        9,
+        16,
+        19,
+        22,
+        28,
+        29,
+        3
+      ],
+      "source": "https://datachart.500.com/qlc/history/newinc/history.php?start=26001&end=26999",
+      "next_issue": "26061",
+      "next_draw_time": "2026-05-31"
+    },
+    {
+      "id": "qxc",
+      "name": "七星彩",
+      "issue": "26060",
+      "draw_date": "2026-05-29",
+      "result": [
+        3,
+        1,
+        3,
+        0,
+        3,
+        2,
+        14
+      ],
+      "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=04&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
+      "next_issue": "26061",
+      "next_draw_time": "2026-06-01"
     },
     {
       "id": "ssq",
@@ -71,25 +108,6 @@
       "next_draw_time": "2026-05-30"
     },
     {
-      "id": "qlc",
-      "name": "七乐彩",
-      "issue": "26059",
-      "draw_date": "2026-05-27",
-      "result": [
-        7,
-        8,
-        9,
-        17,
-        26,
-        28,
-        30,
-        11
-      ],
-      "source": "https://datachart.500.com/qlc/history/newinc/history.php?start=26001&end=26999",
-      "next_issue": "26060",
-      "next_draw_time": "2026-05-29"
-    },
-    {
       "id": "dlt",
       "name": "大乐透",
       "issue": "26058",
@@ -105,24 +123,6 @@
       ],
       "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=85&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
       "next_issue": "26059",
-      "next_draw_time": "2026-05-29"
-    },
-    {
-      "id": "qxc",
-      "name": "七星彩",
-      "issue": "26059",
-      "draw_date": "2026-05-26",
-      "result": [
-        0,
-        6,
-        9,
-        2,
-        3,
-        4,
-        4
-      ],
-      "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=04&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
-      "next_issue": "26060",
       "next_draw_time": "2026-05-29"
     },
     {
@@ -166,10 +166,10 @@
                 30
               ],
               "blue": [
-                10,
-                16
+                4,
+                10
               ],
-              "score": 30.9085,
+              "score": 31.0372,
               "issue": "26061",
               "draw_time": "2026-05-30"
             },
@@ -178,16 +178,16 @@
                 1,
                 6,
                 12,
+                15,
                 17,
                 24,
-                28,
                 31
               ],
               "blue": [
-                4,
-                8
+                8,
+                16
               ],
-              "score": 26.8636,
+              "score": 26.8156,
               "issue": "26061",
               "draw_time": "2026-05-30"
             }
@@ -202,18 +202,18 @@
             {
               "red": [
                 2,
+                3,
                 6,
                 13,
-                17,
                 18,
                 23,
                 25,
                 30
               ],
               "blue": [
-                16
+                10
               ],
-              "score": 32.1019,
+              "score": 32.2889,
               "issue": "26061",
               "draw_time": "2026-05-30"
             }
@@ -237,11 +237,11 @@
               ],
               "blue": [
                 4,
-                8,
                 10,
+                12,
                 16
               ],
-              "score": 34.4772,
+              "score": 34.5961,
               "issue": "26061",
               "draw_time": "2026-05-30"
             }
@@ -445,39 +445,39 @@
           "tickets": [
             {
               "digits": [
-                6,
-                0,
-                1
-              ],
-              "sum": 7,
-              "span": 6,
-              "score": 109.55,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
-            },
-            {
-              "digits": [
-                6,
-                2,
-                2
-              ],
-              "sum": 10,
-              "span": 4,
-              "score": 104.46,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
-            },
-            {
-              "digits": [
+                3,
                 7,
-                5,
                 1
               ],
-              "sum": 13,
+              "sum": 11,
               "span": 6,
-              "score": 123.78,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "score": 106.97,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
+            },
+            {
+              "digits": [
+                3,
+                9,
+                6
+              ],
+              "sum": 18,
+              "span": 6,
+              "score": 105.22,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
+            },
+            {
+              "digits": [
+                8,
+                7,
+                8
+              ],
+              "sum": 23,
+              "span": 1,
+              "score": 115.45,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             }
           ]
         }
@@ -485,19 +485,19 @@
       "last_draw": {
         "id": "fc3d",
         "name": "福彩3D",
-        "issue": "26138",
-        "draw_date": "2026-05-28",
+        "issue": "26139",
+        "draw_date": "2026-05-29",
         "result": [
-          2,
-          6,
-          3
+          1,
+          9,
+          8
         ],
         "source": "fallback: 体彩排列3同日数字型参考，待福彩源恢复",
-        "next_issue": "26139",
-        "next_draw_time": "2026-05-29"
+        "next_issue": "26140",
+        "next_draw_time": "2026-05-30"
       },
-      "current_issue": "26139",
-      "draw_time": "2026-05-29"
+      "current_issue": "26140",
+      "draw_time": "2026-05-30"
     },
     {
       "id": "qlc",
@@ -517,18 +517,18 @@
           "tickets": [
             {
               "nums": [
-                8,
-                9,
-                10,
-                18,
-                20,
-                21,
+                2,
+                3,
+                6,
+                11,
+                14,
+                15,
                 24,
-                28
+                25
               ],
               "score": 82,
-              "issue": "26060",
-              "draw_time": "2026-05-29"
+              "issue": "26061",
+              "draw_time": "2026-05-31"
             }
           ]
         },
@@ -540,17 +540,17 @@
           "tickets": [
             {
               "nums": [
-                7,
-                9,
-                13,
-                17,
+                3,
+                11,
+                14,
+                18,
                 23,
                 24,
-                25
+                27
               ],
               "score": 70,
-              "issue": "26060",
-              "draw_time": "2026-05-29"
+              "issue": "26061",
+              "draw_time": "2026-05-31"
             }
           ]
         }
@@ -558,24 +558,24 @@
       "last_draw": {
         "id": "qlc",
         "name": "七乐彩",
-        "issue": "26059",
-        "draw_date": "2026-05-27",
+        "issue": "26060",
+        "draw_date": "2026-05-29",
         "result": [
-          7,
-          8,
+          2,
           9,
-          17,
-          26,
+          16,
+          19,
+          22,
           28,
-          30,
-          11
+          29,
+          3
         ],
         "source": "https://datachart.500.com/qlc/history/newinc/history.php?start=26001&end=26999",
-        "next_issue": "26060",
-        "next_draw_time": "2026-05-29"
+        "next_issue": "26061",
+        "next_draw_time": "2026-05-31"
       },
-      "current_issue": "26060",
-      "draw_time": "2026-05-29"
+      "current_issue": "26061",
+      "draw_time": "2026-05-31"
     },
     {
       "id": "kl8",
@@ -595,15 +595,15 @@
           "tickets": [
             {
               "nums": [
-                8,
-                19,
-                34,
+                7,
+                14,
+                16,
+                23,
                 36,
+                37,
                 40,
-                43,
-                48,
-                51,
-                52,
+                54,
+                61,
                 71
               ],
               "score": 76,
@@ -620,11 +620,11 @@
           "tickets": [
             {
               "nums": [
-                3,
-                6,
-                64,
-                70,
-                71
+                8,
+                23,
+                33,
+                46,
+                63
               ],
               "score": 71,
               "issue": "待公布",
@@ -632,11 +632,11 @@
             },
             {
               "nums": [
-                26,
-                41,
-                61,
-                68,
-                71
+                3,
+                20,
+                36,
+                69,
+                74
               ],
               "score": 72,
               "issue": "待公布",
@@ -644,11 +644,11 @@
             },
             {
               "nums": [
-                7,
-                9,
-                31,
-                48,
-                64
+                8,
+                24,
+                57,
+                68,
+                71
               ],
               "score": 73,
               "issue": "待公布",
@@ -656,11 +656,11 @@
             },
             {
               "nums": [
-                2,
-                27,
-                31,
-                39,
-                71
+                1,
+                7,
+                20,
+                52,
+                74
               ],
               "score": 74,
               "issue": "待公布",
@@ -668,11 +668,11 @@
             },
             {
               "nums": [
-                4,
-                32,
-                36,
-                38,
-                43
+                18,
+                30,
+                42,
+                49,
+                61
               ],
               "score": 75,
               "issue": "待公布",
@@ -712,19 +712,19 @@
           "tickets": [
             {
               "front": [
-                1,
                 4,
-                6,
-                14,
-                15,
+                19,
+                21,
+                23,
+                24,
                 34
               ],
               "back": [
-                1,
+                3,
                 4,
-                10
+                11
               ],
-              "score": 105.73,
+              "score": 93.58,
               "issue": "26059",
               "draw_time": "2026-05-29"
             }
@@ -738,17 +738,17 @@
           "tickets": [
             {
               "front": [
-                3,
                 9,
-                22,
-                27,
-                30
+                12,
+                16,
+                18,
+                32
               ],
               "back": [
-                8,
-                11
+                1,
+                2
               ],
-              "score": 80.72,
+              "score": 102.33,
               "issue": "26059",
               "draw_time": "2026-05-29"
             }
@@ -794,39 +794,39 @@
           "tickets": [
             {
               "digits": [
-                4,
                 5,
-                6
+                1,
+                5
               ],
-              "sum": 15,
-              "span": 2,
-              "score": 98.96,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "sum": 11,
+              "span": 4,
+              "score": 107.45,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             },
             {
               "digits": [
+                2,
                 1,
-                0,
-                4
+                5
               ],
-              "sum": 5,
+              "sum": 8,
               "span": 4,
-              "score": 118.6,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "score": 97.22,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             },
             {
               "digits": [
                 6,
-                8,
-                1
+                7,
+                6
               ],
-              "sum": 15,
-              "span": 7,
-              "score": 82.19,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "sum": 19,
+              "span": 1,
+              "score": 95.81,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             }
           ]
         }
@@ -834,19 +834,19 @@
       "last_draw": {
         "id": "pl3",
         "name": "排列3",
-        "issue": "26138",
-        "draw_date": "2026-05-28",
+        "issue": "26139",
+        "draw_date": "2026-05-29",
         "result": [
-          2,
-          6,
-          3
+          1,
+          9,
+          8
         ],
         "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=35&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
-        "next_issue": "26139",
-        "next_draw_time": "2026-05-29"
+        "next_issue": "26140",
+        "next_draw_time": "2026-05-30"
       },
-      "current_issue": "26139",
-      "draw_time": "2026-05-29"
+      "current_issue": "26140",
+      "draw_time": "2026-05-30"
     },
     {
       "id": "pl5",
@@ -866,45 +866,45 @@
           "tickets": [
             {
               "digits": [
-                8,
-                3,
-                4,
+                2,
+                5,
+                6,
                 9,
-                1
+                0
               ],
-              "sum": 25,
-              "span": 8,
-              "score": 97.96,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "sum": 22,
+              "span": 9,
+              "score": 114.02,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             },
             {
               "digits": [
                 2,
+                1,
                 3,
-                0,
-                5,
-                9
+                8,
+                5
               ],
               "sum": 19,
-              "span": 9,
-              "score": 98.48,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "span": 7,
+              "score": 98.14,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             },
             {
               "digits": [
+                3,
+                4,
                 6,
-                2,
-                4,
-                4,
-                1
+                0,
+                6
               ],
-              "sum": 17,
-              "span": 5,
-              "score": 108.73,
-              "issue": "26139",
-              "draw_time": "2026-05-29"
+              "sum": 19,
+              "span": 6,
+              "score": 120.69,
+              "issue": "26140",
+              "draw_time": "2026-05-30"
             }
           ]
         }
@@ -912,21 +912,21 @@
       "last_draw": {
         "id": "pl5",
         "name": "排列5",
-        "issue": "26138",
-        "draw_date": "2026-05-28",
+        "issue": "26139",
+        "draw_date": "2026-05-29",
         "result": [
-          2,
-          6,
-          3,
-          5,
-          6
+          1,
+          9,
+          8,
+          1,
+          1
         ],
         "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=350133&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
-        "next_issue": "26139",
-        "next_draw_time": "2026-05-29"
+        "next_issue": "26140",
+        "next_draw_time": "2026-05-30"
       },
-      "current_issue": "26139",
-      "draw_time": "2026-05-29"
+      "current_issue": "26140",
+      "draw_time": "2026-05-30"
     },
     {
       "id": "qxc",
@@ -946,51 +946,51 @@
           "tickets": [
             {
               "digits": [
-                1,
-                7,
-                1,
-                7,
-                8,
-                2,
-                6
-              ],
-              "sum": 32,
-              "span": 7,
-              "score": 109.38,
-              "issue": "26060",
-              "draw_time": "2026-05-29"
-            },
-            {
-              "digits": [
-                3,
-                7,
-                1,
-                2,
-                1,
-                3,
-                4
-              ],
-              "sum": 21,
-              "span": 6,
-              "score": 103.96,
-              "issue": "26060",
-              "draw_time": "2026-05-29"
-            },
-            {
-              "digits": [
                 9,
-                2,
-                5,
                 3,
-                4,
-                4,
-                3
+                7,
+                2,
+                2,
+                0,
+                7
               ],
               "sum": 30,
+              "span": 9,
+              "score": 110.94,
+              "issue": "26061",
+              "draw_time": "2026-06-01"
+            },
+            {
+              "digits": [
+                8,
+                0,
+                8,
+                8,
+                4,
+                9,
+                9
+              ],
+              "sum": 46,
+              "span": 9,
+              "score": 109.72,
+              "issue": "26061",
+              "draw_time": "2026-06-01"
+            },
+            {
+              "digits": [
+                4,
+                8,
+                8,
+                1,
+                2,
+                3,
+                7
+              ],
+              "sum": 33,
               "span": 7,
-              "score": 95.05,
-              "issue": "26060",
-              "draw_time": "2026-05-29"
+              "score": 97.5,
+              "issue": "26061",
+              "draw_time": "2026-06-01"
             }
           ]
         }
@@ -998,23 +998,23 @@
       "last_draw": {
         "id": "qxc",
         "name": "七星彩",
-        "issue": "26059",
-        "draw_date": "2026-05-26",
+        "issue": "26060",
+        "draw_date": "2026-05-29",
         "result": [
-          0,
-          6,
-          9,
-          2,
           3,
-          4,
-          4
+          1,
+          3,
+          0,
+          3,
+          2,
+          14
         ],
         "source": "https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry?gameNo=04&provinceId=0&pageSize=1&isVerify=1&pageNo=1",
-        "next_issue": "26060",
-        "next_draw_time": "2026-05-29"
+        "next_issue": "26061",
+        "next_draw_time": "2026-06-01"
       },
-      "current_issue": "26060",
-      "draw_time": "2026-05-29"
+      "current_issue": "26061",
+      "draw_time": "2026-06-01"
     },
     {
       "id": "jczq",
