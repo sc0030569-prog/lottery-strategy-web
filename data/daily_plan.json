@@ -1,5 +1,5 @@
 {
-  "date": "2026-06-12",
+  "date": "2026-06-13",
   "fixed_for_day": true,
   "source": "https://datachart.500.com/ssq/history/newinc/history.php?start=24001&end=26999",
   "history_count": 368,
@@ -23,7 +23,7 @@
           4,
           10
         ],
-        "score": 30.6223,
+        "score": 30.5563,
         "issue": "26067",
         "draw_time": "2026-06-13"
       },
@@ -39,9 +39,9 @@
         ],
         "blue": [
           3,
-          8
+          13
         ],
-        "score": 26.2979,
+        "score": 26.4436,
         "issue": "26067",
         "draw_time": "2026-06-13"
       }
@@ -51,17 +51,17 @@
         "red": [
           2,
           3,
-          10,
+          9,
           13,
-          17,
           22,
           25,
+          28,
           30
         ],
         "blue": [
           10
         ],
-        "score": 31.876,
+        "score": 31.9753,
         "issue": "26067",
         "draw_time": "2026-06-13"
       }
@@ -81,9 +81,9 @@
           3,
           4,
           10,
-          13
+          12
         ],
-        "score": 33.9413,
+        "score": 34.0132,
         "issue": "26067",
         "draw_time": "2026-06-13"
       }
