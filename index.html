@@ -133,7 +133,7 @@ function renderQuickList(){
 function renderDraws(){
   const list=(data.last_draws||[]);
   const note=(data.draw_fetch&&data.draw_fetch.source_note)||'开奖数据实时抓取';
-  return `<section class="card"><div class="game-head"><div><div class="game-name">开奖记录</div><div class="play-name">往期/上一期开奖查询｜不影响今日推荐号码</div></div><div class="money">独立</div></div><div class="sub">${note}｜抓取时间 ${(data.draw_fetch&&data.draw_fetch.fetched_at)||''}</div><div class="draw-list">${list.map(d=>`<div class="draw-card"><div class="draw-title">${d.name} <small>第${d.issue||'待公布'}期 ${d.draw_date||'待公布'}</small></div>${drawResultHtml(d)}<div class="label">下一期 ${d.next_issue||'待公布'}｜预计开奖 ${d.next_draw_time||'待公布'}</div><div class="draw-actions"><button>走势图</button><button>往期结果</button></div></div>`).join('')}</div></section>`;
+  return `<section class="card"><div class="game-head"><div><div class="game-name">昨日开奖</div><div class="play-name">开奖核对｜往期/上一期开奖查询｜不影响今日推荐号码</div></div><div class="money">独立</div></div><div class="sub">${note}｜抓取时间 ${(data.draw_fetch&&data.draw_fetch.fetched_at)||''}</div><div class="draw-list">${list.map(d=>`<div class="draw-card"><div class="draw-title">${d.name} <small>第${d.issue||'待公布'}期 ${d.draw_date||'待公布'}</small></div>${drawResultHtml(d)}<div class="label">下一期 ${d.next_issue||'待公布'}｜预计开奖 ${d.next_draw_time||'待公布'}</div><div class="draw-actions"><button>走势图</button><button>往期结果</button></div></div>`).join('')}</div></section>`;
 }
 function render(){
   if(!data) return;
