@@ -1,8 +1,13 @@
 # Lottery Strategy Web Handoff
 
-## 2026-06-15 daily cron update
-- Generated date: 2026-06-15
-- Commit pushed: e965b8d
-- GitHub Pages JSON verified: date=2026-06-15, draw_fetch.fetched_at=2026-06-15 09:12:57, last_draws=3
-- Validation: 10 expected games present; local HTTP `/` and `/data/all_daily_plans.json` returned 200; page markers `昨日开奖` / `开奖核对` / `renderDraws` present.
-- Note: `pytest` unavailable on host, so static HTTP validation was used.
+Last updated: 2026-06-20 09:13:42 CST
+
+## Latest daily cron run
+- Generated date: 2026-06-20
+- Validation: passed 10 lottery categories
+- Commit: cd5dc32
+- Public URL: https://sc0030569-prog.github.io/lottery-strategy-web/
+
+## Notes
+- `fetch_history.py` completed successfully in the latest run.
+- Generated files updated: `data/ssq_history.json`, `data/daily_plan.json`, `data/all_daily_plans.json`.
